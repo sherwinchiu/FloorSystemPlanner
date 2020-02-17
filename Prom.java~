@@ -1,0 +1,13 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+class Prom{
+    private ArrayList<Student> students = new ArrayList<>(0);
+    private ArrayList<Table> tables = new ArrayList<>(0);
+    private Menu menu = new Menu(students);
+    private FloorPlanSystem floorPlanSystem = new FloorPlanSystem(table);
+   
+    
+}
