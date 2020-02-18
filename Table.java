@@ -22,13 +22,13 @@ class Table{
         for (int i = 0; i < this.size; i++){
             if (students[i] == null);
             students[i] = s;
-            i = this.size //lol idk if he lets us do this
+            i = this.size; //lol idk if he lets us do this
         }
     }
     public int getX(){
         return this.x;
     }
-    public Students[] getStudents(){
+    public Student[] getStudents(){
         return this.students;
     }
     public int getY(){

@@ -1,14 +1,11 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import static java.awt.MouseInfo.getPointerInfo;
-
 
 class FloorPlanSystem extends JPanel{
 
-    private ArrayList<Table> tables =  new ArrayList<>(0);
+    private ArrayList<Table> tables = new ArrayList<>(0);
     
     public FloorPlanSystem(ArrayList<Table> tables){
         this.tables = tables;

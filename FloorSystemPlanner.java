@@ -5,7 +5,6 @@
   */
 
 class FloorSystemPlanner{
-    private int dog = 0;
     public FloorSystemPlanner(){
 
     }
