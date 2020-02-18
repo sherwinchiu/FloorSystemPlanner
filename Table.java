@@ -6,6 +6,7 @@ class Table{
     private Student[] students;
     private int x;
     private int y;
+    public Table(int x, int y){
     private int radius;
     
     public Table(size){
