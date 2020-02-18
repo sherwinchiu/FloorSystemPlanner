@@ -13,14 +13,20 @@ import java.util.ArrayList;
 class FloorPlanSystem extends JPanel{
 
     private ArrayList<Table> tables = new ArrayList<>(0);
-    
     public FloorPlanSystem(ArrayList<Table> tables){
         this.tables = tables;  
+    }
+    public void placeTable(ArrayList<Table> tables){
+
+
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         //Draw Stuff Here
-
+        g.setColor(Color.BLACK);
+        for(int i = 0; i < tables.size(); i++){
+            tables.get(i).drawTable(g);
+        }
         //Updates and redraws the panel
         this.repaint();
     }

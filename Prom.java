@@ -8,8 +8,8 @@ class Prom extends JFrame{
     private ArrayList<Table> tables = new ArrayList<>(0);
    // private TicketingSystem menu = new TicketingSystem(students, tables);
     private FloorPlanSystem floorPlanSystem = new FloorPlanSystem(tables);
-    private final int MAX_X = 800;
-    private final int MAX_Y = 600;
+    private final int MAX_X = (int)getToolkit().getScreenSize().getWidth();
+    private final int MAX_Y = (int)getToolkit().getScreenSize().getHeight();
     
      Prom(){
         FloorPlanSystem panel = new FloorPlanSystem(tables);
