@@ -1,12 +1,21 @@
+import javax.swing.*;
+import java.awt.*;
+
 class Table{
     private int size;
     private Student[] students;
     private int x;
     private int y;
+    private int radius;
     
-    public Table(int x, int y){
+    public Table(size){
         this.x = x;
         this.y = y;
+        this.radius = radius;
+    }
+    
+    public void draw(Graphics g){
+      g.drawOval(this.x, this.y, this.radius, this.radius);
     }
     
     public int getSize(){
