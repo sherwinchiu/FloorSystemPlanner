@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-class Prom extends JPanel{
+class Prom extends JFrame{
     private ArrayList<Student> students = new ArrayList<>(0);
     private ArrayList<Table> tables = new ArrayList<>(0);
    // private TicketingSystem menu = new TicketingSystem(students, tables);
@@ -12,7 +12,7 @@ class Prom extends JPanel{
     private final int MAX_Y = 600;
     
      Prom(){
-        DrawingPanel panel = new DrawingPanel();
+        FloorPlanSystem panel = new FloorPlanSystem(tables);
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.addMouseListener(new MyMouseListener());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,15 +24,7 @@ class Prom extends JPanel{
         this.setUndecorated(true);
         */
     }
-    private static class DrawingPanel extends JPanel {
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            //Draw Stuff Here
 
-            //Updates and redraws the panel
-            this.repaint();
-        }
-    }
     private static class MyMouseListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {

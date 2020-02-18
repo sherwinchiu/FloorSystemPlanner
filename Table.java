@@ -34,7 +34,7 @@ class Table{
     public int getY(){
         return this.y;
     }
-    public Boolean isFull(){
+    public boolean isFull(){
         if (students[size-1] != null){
             return true;
         } else{
