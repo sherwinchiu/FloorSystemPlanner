@@ -1,22 +1,22 @@
 import java.util.ArrayList;
 public class Student{
     private String name;
-    private int id;
+    private String id;
     private ArrayList<Student> partners = new ArrayList<>(0);
     private boolean paid;
-    public Student(String name, int id, ArrayList<Student> partners){
+    public Student(String name, String id, ArrayList<Student> partners){
         this.name = name;
         this.id = id;
         this.partners = partners;
     }
-    public Student(String name, int id){
+    public Student(String name, String id){
         this.name = name;
         this.id = id;
     }
     public String getName(){
         return this.name;
     }
-    public int getId(){
+    public String getId(){
         return id;
     }
     public ArrayList<Student> getPartners(){
@@ -30,5 +30,11 @@ public class Student{
     }
     public void setPaid(boolean paid){
         this.paid = paid;
+    }
+    public boolean equals(Student s){
+        if (this.id.equals(s.getId()))
+            return true;
+        else   
+            return false;
     }
 }
