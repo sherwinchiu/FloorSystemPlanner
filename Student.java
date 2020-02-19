@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-public class Student{
+import java.util.Comparator;
+class Student implements Comparator<Student>{
     private String name;
     private String id;
     private ArrayList<Student> partners = new ArrayList<>(0);
@@ -32,9 +33,18 @@ public class Student{
         this.paid = paid;
     }
     public boolean equals(Student s){
-        if (this.id.equals(s.getId()))
-            return true;
+        if (compare(this, s) == 0)
+            return true; 
         else   
             return false;
+    }
+    @Override
+    public int compare(Student s1, Student s2) {
+        if (Integer.parseInt(s1.getId()) > Integer.parseInt(s2.getId()))
+            return 1;
+        else if (s1.getId().equals(s2.getId()))
+            return 0;
+        else 
+            return -1;
     }
 }
