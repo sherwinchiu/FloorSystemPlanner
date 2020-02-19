@@ -3,39 +3,35 @@ import java.util.ArrayList;
 
 class Table{
     private int size;
-    private Student[] students;
+    private ArrayList<Student> students = new ArrayList<>(0);
     private int x;
     private int y;
+    private final int MAX_SIZE = 10;
     private final int RADIUS = 25;
     
-    public Table(int x, int y, int size){
+    public Table(int x, int y, int size, ArrayList<Student> students){
         this.x = x;
         this.y = y;
         this.size = size;
+        this.students = students;
     }
     public int getSize(){
         return this.size;
     }
     public void addStudent(Student s){
-        for (int i = 0; i < this.size; i++){
-            if (this.students[i] == null){
-                this.students[i] = s;
-                i = this.size; //lol idk if he lets us do this
-            }
-        }
+        this.students.add(s);
     }
     public void removeStudent(Student s){
         for(int i = 0; i < this.size; i++){
-            if (s.getId() == students[i].getId())
-                this.students[i] = null;
+            if (s.getId() == this.students.get(i).getId())
+                this.students.set(i, null);
         }
     } 
-    public Student[] getStudents(){
+    public ArrayList<Student> getStudents(){
         return this.students;
     }
     public void setStudents(ArrayList<Student> s){
-        for(int i = 0; i < this.size; i++)
-            this.students[i] = s.get(i);
+        this.students = s;
     }
     public int getX(){
         return this.x;
@@ -49,15 +45,11 @@ class Table{
     public void setY(int y){
         this.y = y;
     }
-
-
-    
     public boolean isFull(){
-        if (students[size-1] != null){
+        if(this.size == this.MAX_SIZE)
             return true;
-        } else{
+        else 
             return false;
-        }
     }
     public void drawTable(Graphics g){
         g.drawOval(this.x, this.y, this.RADIUS, this.RADIUS);
