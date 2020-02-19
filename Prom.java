@@ -9,11 +9,11 @@ class Prom extends JFrame{
     }
     private ArrayList<Student> students = new ArrayList<>(0);
     private ArrayList<Table> tables = new ArrayList<>(0);
-    private FloorPlanSystem floorPlanSystem = new FloorPlanSystem();
+   // private FloorPlanSystem floorPlanSystem = new FloorPlanSystem(tables);
     private final int MAX_X = (int)getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int)getToolkit().getScreenSize().getHeight();
     Prom(){
-        FloorPlanSystem panel = new FloorPlanSystem();
+        FloorPlanSystem panel = new FloorPlanSystem(tables);
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.addMouseListener(new MyMouseListener());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

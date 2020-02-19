@@ -7,7 +7,7 @@ class Table{
     private int x;
     private int y;
     private final int MAX_SIZE = 10;
-    private final int RADIUS = 25;
+    private final int RADIUS = 200;
     public Table(int size){
         this.size = size;
     }
