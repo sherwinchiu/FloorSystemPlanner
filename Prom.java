@@ -4,13 +4,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 class Prom extends JFrame{
-
-	private ArrayList<Student> students = new ArrayList<>(0);
+    public static void main(String[] args) {
+        Prom start = new Prom();
+    }
+    private ArrayList<Student> students = new ArrayList<>(0);
     private ArrayList<Table> tables = new ArrayList<>(0);
     private FloorPlanSystem floorPlanSystem = new FloorPlanSystem();
     private final int MAX_X = (int)getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int)getToolkit().getScreenSize().getHeight();
-    
     Prom(){
         FloorPlanSystem panel = new FloorPlanSystem();
         this.getContentPane().add(BorderLayout.CENTER, panel);
@@ -18,13 +19,7 @@ class Prom extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(MAX_X, MAX_Y);
         this.setVisible(true);
-        /*
-        //Sets to fullscreen
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setUndecorated(true);
-        */
     }
-
     private static class MyMouseListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {

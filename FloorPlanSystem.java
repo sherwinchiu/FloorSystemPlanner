@@ -20,8 +20,8 @@ class FloorPlanSystem extends JPanel{
         for (int i = 0; i < tabless.length; i++){
             tabless[i] = table;
             tables.add(tabless[i]);
+            
         }
-
     }
     public void setTable(final ArrayList<Table> tables){
         int yFactor = 1;
@@ -30,11 +30,11 @@ class FloorPlanSystem extends JPanel{
             if (xFactor*(2*tables.get(0).getRadius()+10) >= screenX){
                 xFactor = 0;
                 yFactor++;
-        }      
-            tables.get(i).setX(xFactor*(2*tables.get(0).getRadius())+tables.get(i).getRadius()+5);
-            tables.get(i).setY(yFactor*(2*tables.get(0).getRadius())+tables.get(i).getRadius()+5);   
-            xFactor++;
-    }
+        }    
+        tables.get(i).setX(xFactor*(2*tables.get(0).getRadius())+tables.get(i).getRadius()+5);
+        tables.get(i).setY(yFactor*(2*tables.get(0).getRadius())+tables.get(i).getRadius()+5);   
+        xFactor++;
+        }
     }
     public void paintComponent(final Graphics g){
         super.paintComponent(g);

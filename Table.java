@@ -8,8 +8,12 @@ class Table{
     private int y;
     private final int MAX_SIZE = 10;
     private final int RADIUS = 25;
-    
     public Table(int size){
+        this.size = size;
+    }
+    public Table(int x, int y, int size, ArrayList<Student> students){
+        this.x = x;
+        this.y = y;
         this.size = size;
     }
     public int getSize(){
@@ -53,6 +57,6 @@ class Table{
     }
     public void drawTable(Graphics g){
         g.drawOval(this.x, this.y, this.RADIUS, this.RADIUS);
-      }
+    }
 }
     
