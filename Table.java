@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 class Table{
     private int size;
@@ -34,7 +35,7 @@ class Table{
     }
     public void setStudents(ArrayList<Student> s){
         for(int i = 0; i < this.size; i++)
-            this.students[i] = s;
+            this.students[i] = s.get(i);
     }
     public int getX(){
         return this.x;
