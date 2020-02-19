@@ -11,7 +11,7 @@ class Prom extends JFrame{
     private final int MAX_X = (int)getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int)getToolkit().getScreenSize().getHeight();
     
-     Prom(){
+    Prom(){
         FloorPlanSystem panel = new FloorPlanSystem(tables);
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.addMouseListener(new MyMouseListener());
@@ -28,6 +28,7 @@ class Prom extends JFrame{
     private static class MyMouseListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {
+            System.out.println("hi");
         }
         @Override
         public void mouseEntered(MouseEvent mouseEvent) {
