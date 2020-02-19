@@ -4,15 +4,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 class Prom extends JFrame{
-    private ArrayList<Student> students = new ArrayList<>(0);
+
+	private ArrayList<Student> students = new ArrayList<>(0);
     private ArrayList<Table> tables = new ArrayList<>(0);
-   // private TicketingSystem menu = new TicketingSystem(students, tables);
-    private FloorPlanSystem floorPlanSystem = new FloorPlanSystem(tables);
+    private FloorPlanSystem floorPlanSystem = new FloorPlanSystem();
     private final int MAX_X = (int)getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int)getToolkit().getScreenSize().getHeight();
     
     Prom(){
-        FloorPlanSystem panel = new FloorPlanSystem(tables);
+        FloorPlanSystem panel = new FloorPlanSystem();
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.addMouseListener(new MyMouseListener());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
