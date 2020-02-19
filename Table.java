@@ -9,11 +9,8 @@ class Table{
     private final int MAX_SIZE = 10;
     private final int RADIUS = 25;
     
-    public Table(int x, int y, int size, ArrayList<Student> students){
-        this.x = x;
-        this.y = y;
+    public Table(int size){
         this.size = size;
-        this.students = students;
     }
     public int getSize(){
         return this.size;
@@ -38,6 +35,9 @@ class Table{
     }
     public void setX(int x){
         this.x = x;
+    }
+    public int getRadius() {
+    	return this.RADIUS;
     }
     public int getY(){
         return this.y;

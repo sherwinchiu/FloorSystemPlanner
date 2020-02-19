@@ -11,16 +11,32 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 class FloorPlanSystem extends JPanel{
+	int screenX = 1920;
+	int screenY = 1080;
+    Table table = new Table(10);
+    Table[] tabless = new Table[10];
+    private ArrayList<Table> tables = new ArrayList<Table>(10);
+    public FloorPlanSystem(){
+        for (int i = 0; i < tabless.length; i++){
+            tabless[i] = table;
+            tables.add(tabless[i]);
+        }
 
-    private ArrayList<Table> tables = new ArrayList<>(0);
-    public FloorPlanSystem(ArrayList<Table> tables){
-        this.tables = tables;  
     }
-    public void placeTable(ArrayList<Table> tables){
-
-
+    public void setTable(final ArrayList<Table> tables){
+        int yFactor = 1;
+        int xFactor = 0;
+    	for (int i = 0; i < tables.size(); i++) {
+            if (xFactor*(2*tables.get(0).getRadius()+10) >= screenX){
+                xFactor = 0;
+                yFactor++;
+        }      
+            tables.get(i).setX(xFactor*(2*tables.get(0).getRadius())+tables.get(i).getRadius()+5);
+            tables.get(i).setY(yFactor*(2*tables.get(0).getRadius())+tables.get(i).getRadius()+5);   
+            xFactor++;
     }
-    public void paintComponent(Graphics g) {
+    }
+    public void paintComponent(final Graphics g){
         super.paintComponent(g);
         //Draw Stuff Here
         g.setColor(Color.BLACK);
@@ -41,19 +57,19 @@ class FloorPlanSystem extends JPanel{
         */
     private static class MyMouseListener implements MouseListener {
         @Override
-        public void mouseClicked(MouseEvent mouseEvent) {
+        public void mouseClicked(final MouseEvent mouseEvent) {
         }
         @Override
-        public void mouseEntered(MouseEvent mouseEvent) {
+        public void mouseEntered(final MouseEvent mouseEvent) {
         }
         @Override
-        public void mouseExited(MouseEvent mouseEvent) {
+        public void mouseExited(final MouseEvent mouseEvent) {
         }
         @Override
-        public void mousePressed(MouseEvent mouseEvent) {
+        public void mousePressed(final MouseEvent mouseEvent) {
         }
         @Override
-        public void mouseReleased(MouseEvent mouseEvent) {
+        public void mouseReleased(final MouseEvent mouseEvent) {
         }
     }
 }
