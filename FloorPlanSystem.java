@@ -6,8 +6,7 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 class FloorPlanSystem extends JPanel{
@@ -19,9 +18,16 @@ class FloorPlanSystem extends JPanel{
         this.tables = t;
         // till we buy the thing to test
         for(int i = 0; i < NUM_TABLES; i++){
-            Table newTab = new Table(10);
+            Table newTab = new Table(50, 50, 10);
             this.tables.add(newTab);
         }
+        Student s1 = new Student("sherwin", "073726689");
+        Student s2 = new Student("Kyro", "235123");
+        tables.get(0).addStudent(s1);
+        tables.get(0).addStudent(s2);
+        tables.get(1).addStudent(s1);
+        tables.get(1).addStudent(s2);
+        
     }
     public void setTable(){
         int incrementX = 0;
@@ -41,7 +47,9 @@ class FloorPlanSystem extends JPanel{
         //Draw Stuff Here
         g.setColor(Color.BLACK);
         setTable();
+        System.out.println(tables.get(0).getSize());
         for(int i = 0; i < tables.size(); i++){
+            tables.get(i).drawChair(g);
             tables.get(i).drawTable(g);
         }
         //Updates and redraws the panel

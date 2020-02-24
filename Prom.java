@@ -14,8 +14,8 @@ class Prom extends JFrame{
     private final int MAX_Y = (int)getToolkit().getScreenSize().getHeight();
     Prom(){
         FloorPlanSystem panel = new FloorPlanSystem(tables);
+        panel.addMouseListener(new MyMouseListener()); 
         this.getContentPane().add(BorderLayout.CENTER, panel);
-        this.addMouseListener(new MyMouseListener());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(MAX_X, MAX_Y);
         this.setVisible(true);
@@ -39,4 +39,3 @@ class Prom extends JFrame{
         }
     }
 }
-   

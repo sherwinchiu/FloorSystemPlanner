@@ -7,11 +7,11 @@ class Table{
     private int x;
     private int y;
     private final int MAX_SIZE = 10;
-    private final int RADIUS = 200;
+    private final int RADIUS = 100;
     public Table(int size){
         this.size = size;
     }
-    public Table(int x, int y, int size, ArrayList<Student> students){
+    public Table(int x, int y, int size){
         this.x = x;
         this.y = y;
         this.size = size;
@@ -57,6 +57,16 @@ class Table{
     }
     public void drawTable(Graphics g){
         g.drawOval(this.x, this.y, this.RADIUS, this.RADIUS);
+    }
+    public void drawChair(Graphics g){
+        double angleIncr = (2.0*Math.PI/(double)this.students.size());
+        int x;
+        int y;
+        for(int i = 1; i < this.students.size()+1; i++){
+            x = (int)(Math.cos((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
+            y = (int)(Math.sin((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
+            g.drawOval(this.x+this.RADIUS/2+x-6, this.y+this.RADIUS/2+y-6, 12, 12);
+        } 
     }
 }
     
