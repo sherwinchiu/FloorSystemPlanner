@@ -23,7 +23,6 @@ class Prom extends JFrame{
     private static class MyMouseListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {
-
         }
         @Override
         public void mouseEntered(MouseEvent mouseEvent) {
