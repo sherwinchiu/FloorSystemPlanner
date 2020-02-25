@@ -24,11 +24,18 @@ class FloorPlanSystem extends JPanel{
         this.addMouseMotionListener(new MyMouseListener());
         // till we buy the thing to test
         for(int i = 0; i < NUM_TABLES; i++){
-            Table newTab = new Table(10);
+            Table newTab = new Table(50, 50, 10);
             this.tables.add(newTab);
         }
-
-
+        Student s1 = new Student("sherwin", "073726689");
+        Student s2 = new Student("Kyro", "235123");
+        tables.get(0).addStudent(s1);
+        tables.get(0).addStudent(s2);
+        tables.get(1).addStudent(s1);
+        tables.get(1).addStudent(s2);
+        
+    }
+    public void setTable(){
         int incrementX = 0;
         int incrementY = 0;
     	for(int i = 0; i < NUM_TABLES; i++){

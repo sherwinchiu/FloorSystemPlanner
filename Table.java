@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 class Table{
     private int size;
@@ -8,6 +9,7 @@ class Table{
     private int y;
     private boolean dragged = false;
     private final int MAX_SIZE = 10;
+<<<<<<< HEAD
     private final int RADIUS = 45;
     private Rectangle boundingBox = new Rectangle(x,y,this.RADIUS*2, this.RADIUS*2);
 
@@ -15,6 +17,17 @@ class Table{
     public Table(int size){
         this.size = size;
     }
+=======
+    private final int RADIUS = 100;
+    public Table(int size){
+        this.size = size;
+    }
+    public Table(int x, int y, int size){
+        this.x = x;
+        this.y = y;
+        this.size = size;
+    }
+>>>>>>> master
     public int getSize(){
         return this.size;
     }
@@ -67,6 +80,17 @@ class Table{
     }
     public void drawTable(Graphics g){
         g.drawOval(this.x, this.y, this.RADIUS, this.RADIUS);
+    }
+    public void drawChair(Graphics g){
+        double angleIncr = (2.0*Math.PI/(double)this.students.size());
+        int x;
+        int y;
+        for(int i = 1; i < this.students.size()+1; i++){
+            x = (int)(Math.cos((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
+            y = (int)(Math.sin((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
+            g.drawString(this.students.get(i-1).getName(), this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y-6);
+            g.drawOval(this.x+this.RADIUS/2+x-6, this.y+this.RADIUS/2+y-6, 12, 12);
+        } 
     }
 }
     
