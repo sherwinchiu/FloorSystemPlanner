@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.JPanel;
 
 class Table{
     private int size;
@@ -9,9 +8,9 @@ class Table{
     private int y;
     private boolean dragged = false;
     private final int MAX_SIZE = 10;
-    private final int RADIUS = 45;
+    private final int RADIUS = 100;
     private Rectangle boundingBox = new Rectangle(x,y,this.RADIUS*2, this.RADIUS*2);
-
+    
     public Table(int size){
         this.size = size;
     }
@@ -85,4 +84,3 @@ class Table{
         } 
     }
 }
-    
