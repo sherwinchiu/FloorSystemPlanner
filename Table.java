@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 class Table{
     private int size;
@@ -65,6 +66,7 @@ class Table{
         for(int i = 1; i < this.students.size()+1; i++){
             x = (int)(Math.cos((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
             y = (int)(Math.sin((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
+            g.drawString(this.students.get(i-1).getName(), this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y-6);
             g.drawOval(this.x+this.RADIUS/2+x-6, this.y+this.RADIUS/2+y-6, 12, 12);
         } 
     }
