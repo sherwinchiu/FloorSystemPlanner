@@ -6,18 +6,23 @@ class Table{
     private ArrayList<Student> students = new ArrayList<>(0);
     private int x;
     private int y;
+    private boolean dragged = false;
     private final int MAX_SIZE = 10;
-    private final int RADIUS = 200;
+    private final int RADIUS = 45;
+    private Rectangle boundingBox = new Rectangle(x,y,this.RADIUS*2, this.RADIUS*2);
+
+    
     public Table(int size){
-        this.size = size;
-    }
-    public Table(int x, int y, int size, ArrayList<Student> students){
-        this.x = x;
-        this.y = y;
         this.size = size;
     }
     public int getSize(){
         return this.size;
+    }
+    public void setDragged(boolean b){
+        this.dragged = b;
+    }
+    public boolean getDragged(){
+        return this.dragged;
     }
     public void addStudent(Student s){
         this.students.add(s);
@@ -39,6 +44,7 @@ class Table{
     }
     public void setX(int x){
         this.x = x;
+        boundingBox.setBounds(this.x,this.y,this.RADIUS*2, this.RADIUS*2);
     }
     public int getRadius() {
     	return this.RADIUS;
@@ -48,12 +54,16 @@ class Table{
     }
     public void setY(int y){
         this.y = y;
+        boundingBox.setBounds(this.x,this.y,this.RADIUS*2, this.RADIUS*2);
     }
     public boolean isFull(){
         if(this.size == this.MAX_SIZE)
             return true;
         else 
             return false;
+    }
+    public Rectangle getBoundingBox(){
+        return this.boundingBox;
     }
     public void drawTable(Graphics g){
         g.drawOval(this.x, this.y, this.RADIUS, this.RADIUS);
