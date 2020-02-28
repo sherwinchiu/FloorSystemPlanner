@@ -82,6 +82,17 @@ class FloorPlanSystem extends JPanel {
             } else if (elapsedTime < 1000 && mouseCounter >= 2){
                 mouseCounter = 0;
                 startTime = System.currentTimeMillis();
+                mx = mouseEvent.getX();
+                my = mouseEvent.getY();
+                Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
+                for(int i = 0; i < tables.size(); i++){
+                    for(int j = 0; j < tables.get(i).getStudents().size(); j++){
+                        if (mouseRect.intersects(tables.get(i).getNameRect(j))){
+                            System.out.println("ok nice click");
+                        }
+                    }
+                }
+                
             }
         }
 
@@ -110,7 +121,7 @@ class FloorPlanSystem extends JPanel {
             my = mouseEvent.getY()-tables.get(0).getRadius()/2;
             Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
             for (int i = 0; i < tables.size(); i++) {
-                if (mouseRect.intersects(tables.get(i).getBoundingBox()) && !somethingDragging) {
+                if (mouseRect.intersects(tables.get(i).getTableRect()) && !somethingDragging) {
                     tables.get(i).setDragged(true);
                     somethingDragging = true;
                     mouseEvent.consume();
@@ -126,7 +137,7 @@ class FloorPlanSystem extends JPanel {
             System.out.println(mx + ":" + my);
             Rectangle mouseRect = new Rectangle(mouseEvent.getX(), mouseEvent.getY(), 1, 1);
             for (int i = 0; i < tables.size(); i++) {
-                if (mouseRect.intersects(tables.get(i).getBoundingBox())) {
+                if (mouseRect.intersects(tables.get(i).getTableRect())) {
                     somethingDragging = false;
                     tables.get(i).setDragged(false);
                 }
