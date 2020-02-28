@@ -1,16 +1,15 @@
-
 /**  FloorPlanSystem class 
  *  Sherwin Chiu and Kyro Nassif
 *  Visual Display of floor for Prom   
 *  2/13/2020
 */
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
+    import javax.swing.*;
+    import java.awt.*;
+    import java.awt.event.MouseEvent;
+    import java.awt.event.MouseListener;
+    import java.awt.event.MouseMotionListener;
+    import java.util.ArrayList;
 
 class FloorPlanSystem extends JPanel {
     private int mouseCounter = 0;
@@ -53,7 +52,10 @@ class FloorPlanSystem extends JPanel {
             this.tables.get(i).setX(MAX_X/2 + incrementX * tables.get(i).getRadius()*2);
             this.tables.get(i).setY(MAX_Y/2 + incrementY * tables.get(i).getRadius()*2);
             incrementX++;
-        }
+        this.tables.get(i).setX(incrementX*tables.get(i).getRadius());
+        this.tables.get(i).setY(incrementY*tables.get(i).getRadius());
+        incrementX++;    
+        }    
     }
 
     public void paintComponent(final Graphics g) {
@@ -96,11 +98,10 @@ class FloorPlanSystem extends JPanel {
             }
         }
 
-        @Override
+            @Override
         public void mouseEntered(final MouseEvent mouseEvent) {
-        }
+            }
 
-        @Override
         public void mouseExited(final MouseEvent mouseEvent) {
         }
 
