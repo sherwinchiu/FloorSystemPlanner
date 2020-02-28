@@ -93,7 +93,7 @@ class FloorPlanSystem extends JPanel {
                 for (int i = 0; i < tables.size(); i++) {
                     for (int j = 0; j < tables.get(i).getStudents().size(); j++) {
                         if (mouseRect.intersects(tables.get(i).getNameRect(j))) {
-                            System.out.println("ok nice click");
+                            System.out.println(tables.get(i).getStudents().get(j).getId());
                         }
                     }
                 }
