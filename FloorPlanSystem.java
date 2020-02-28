@@ -97,7 +97,6 @@ class FloorPlanSystem extends JPanel {
                         }
                     }
                 }
-
             }
         }
         @Override

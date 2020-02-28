@@ -30,6 +30,7 @@ class Table{
         return this.dragged;
     }
     public void addStudent(Student s){
+        this.nameRect.add(new Rectangle());
         this.students.add(s);
     }
     public void removeStudent(Student s){
@@ -42,6 +43,9 @@ class Table{
         return this.students;
     }
     public void setStudents(ArrayList<Student> s){
+        for(int i = 0; i < s.size(); i++){
+            this.nameRect.add(new Rectangle());
+        }
         this.students = s;
     }
     public int getX(){
@@ -85,12 +89,10 @@ class Table{
             y = (int)(Math.sin((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
             if(y >= 0){
                 g.drawString(this.students.get(i-1).getName(), this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y+25);
-                this.nameRect.add(new Rectangle(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length(), this.y+this.RADIUS/2+y+15, this.students.get(i-1).getName().length()*5, 14));
-                g.drawRect(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y+15, this.students.get(i-1).getName().length()*6, 14);
+                this.nameRect.set(i-1, new Rectangle(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length(), this.y+this.RADIUS/2+y+15, this.students.get(i-1).getName().length()*5, 14));
             } else{
                 g.drawString(this.students.get(i-1).getName(), this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y-15);
-                this.nameRect.add(new Rectangle(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length(), this.y+this.RADIUS/2+y-25, this.students.get(i-1).getName().length()*5, 14));
-                g.drawRect(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y-25, this.students.get(i-1).getName().length()*6, 14);
+                this.nameRect.set(i-1, new Rectangle(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length(), this.y+this.RADIUS/2+y-25, this.students.get(i-1).getName().length()*5, 14));
             }
             g.drawOval(this.x+this.RADIUS/2+x-12, this.y+this.RADIUS/2+y-10, 20, 20);
         } 
