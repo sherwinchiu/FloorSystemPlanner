@@ -9,8 +9,8 @@ class Table{
     private int y;
     private boolean dragged = false;
     private final int MAX_SIZE = 10;
-    private int RADIUS = 150;
-    private Rectangle tableRect = new Rectangle(x,y,this.RADIUS*2, this.RADIUS*2);
+    private int radius = 150;
+    private Rectangle tableRect = new Rectangle(x,y,this.radius*2, this.radius*2);
     
     public Table(int size){
         this.size = size;
@@ -25,6 +25,9 @@ class Table{
     }
     public void setDragged(boolean b){
         this.dragged = b;
+    }
+    public void setRadius(int r){
+    this.radius = r;
     }
     public boolean getDragged(){
         return this.dragged;
@@ -53,17 +56,17 @@ class Table{
     }
     public void setX(int x){
         this.x = x;
-        tableRect.setBounds(this.x,this.y,this.RADIUS, this.RADIUS);
+        tableRect.setBounds(this.x,this.y,this.radius, this.radius);
     }
     public int getRadius() {
-    	return this.RADIUS;
+    	return this.radius;
     }
     public int getY(){
         return this.y;
     }
     public void setY(int y){
         this.y = y;
-        tableRect.setBounds(this.x,this.y,this.RADIUS, this.RADIUS);
+        tableRect.setBounds(this.x,this.y,this.radius, this.radius);
     }
     public boolean isFull(){
         if(this.size == this.MAX_SIZE)
@@ -78,23 +81,23 @@ class Table{
         return this.nameRect.get(index);
     }
     public void drawTable(Graphics g){
-        g.drawOval(this.x, this.y, this.RADIUS, this.RADIUS);
+        g.drawOval(this.x, this.y, this.radius, this.radius);
     }
     public void drawChair(Graphics g){
         double angleIncr = (2.0*Math.PI/(double)this.students.size());
         int x;
         int y;
         for(int i = 1; i < this.students.size()+1; i++){
-            x = (int)(Math.cos((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
-            y = (int)(Math.sin((double)i*angleIncr)*(this.RADIUS/2+this.RADIUS/10));
+            x = (int)(Math.cos((double)i*angleIncr)*(this.radius/2+this.radius/10));
+            y = (int)(Math.sin((double)i*angleIncr)*(this.radius/2+this.radius/10));
             if(y >= 0){
-                g.drawString(this.students.get(i-1).getName(), this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y+25);
-                this.nameRect.set(i-1, new Rectangle(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length(), this.y+this.RADIUS/2+y+15, this.students.get(i-1).getName().length()*5, 14));
+                g.drawString(this.students.get(i-1).getName(), this.x+this.radius/2+x-this.students.get(i-1).getName().length()*2, this.y+this.radius/2+y+25);
+                this.nameRect.set(i-1, new Rectangle(this.x+this.radius/2+x-this.students.get(i-1).getName().length(), this.y+this.radius/2+y+15, this.students.get(i-1).getName().length()*5, 14));
             } else{
-                g.drawString(this.students.get(i-1).getName(), this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length()*2, this.y+this.RADIUS/2+y-15);
-                this.nameRect.set(i-1, new Rectangle(this.x+this.RADIUS/2+x-this.students.get(i-1).getName().length(), this.y+this.RADIUS/2+y-25, this.students.get(i-1).getName().length()*5, 14));
+                g.drawString(this.students.get(i-1).getName(), this.x+this.radius/2+x-this.students.get(i-1).getName().length()*2, this.y+this.radius/2+y-15);
+                this.nameRect.set(i-1, new Rectangle(this.x+this.radius/2+x-this.students.get(i-1).getName().length(), this.y+this.radius/2+y-25, this.students.get(i-1).getName().length()*5, 14));
             }
-            g.drawOval(this.x+this.RADIUS/2+x-12, this.y+this.RADIUS/2+y-10, 20, 20);
+            g.drawOval(this.x+this.radius/2+x-12, this.y+this.radius/2+y-10, 20, 20);
         } 
     }
 }

@@ -69,6 +69,8 @@ class FloorPlanSystem extends JPanel {
             tables.get(i).drawTable(g);
             tables.get(i).drawChair(g);
         }
+        g.fillRect(100, 500, 100, 20);
+        g.fillRect(100, 600, 100, 20);
         // Updates and redraws the panel
         this.repaint();
     }
@@ -95,7 +97,19 @@ class FloorPlanSystem extends JPanel {
                     }
                 }
             }
+            if (mx >= 100 && mx <= 200 && my >= 500 && my <= 520){
+                for (int i = 0; i < tables.size(); i++){
+                    tables.get(i).setRadius(tables.get(i).getRadius()+10);
+                    setTable();
+                }
+            }
+            if (mx >= 100 && mx <= 200 && my >= 600 && my <= 620){
+                for (int i = 0; i < tables.size(); i++){
+                    tables.get(i).setRadius(tables.get(i).getRadius()-10);
+                    setTable();
+                }
         }
+    }
         @Override
         public void mouseEntered(final MouseEvent mouseEvent) {
         }
