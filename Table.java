@@ -53,7 +53,7 @@ class Table{
     }
     public void setX(int x){
         this.x = x;
-        tableRect.setBounds(this.x,this.y,this.RADIUS*2, this.RADIUS*2);
+        tableRect.setBounds(this.x,this.y,this.RADIUS, this.RADIUS);
     }
     public int getRadius() {
     	return this.RADIUS;
@@ -63,7 +63,7 @@ class Table{
     }
     public void setY(int y){
         this.y = y;
-        tableRect.setBounds(this.x,this.y,this.RADIUS*2, this.RADIUS*2);
+        tableRect.setBounds(this.x,this.y,this.RADIUS, this.RADIUS);
     }
     public boolean isFull(){
         if(this.size == this.MAX_SIZE)

@@ -47,15 +47,12 @@ class FloorPlanSystem extends JPanel {
         int incrementX = 0;
         int incrementY = 0;
         for (int i = 0; i < tables.size(); i++) {
-            if (incrementX * tables.get(i).getRadius() >= MAX_X) {
+            if ((int)(incrementX * tables.get(i).getRadius()*1.5) >= MAX_X) {
                 incrementX = 0;
                 incrementY++;
             }
-            this.tables.get(i).setX(MAX_X / 2 + incrementX * tables.get(i).getRadius() * 2);
-            this.tables.get(i).setY(MAX_Y / 2 + incrementY * tables.get(i).getRadius() * 2);
-            incrementX++;
-            this.tables.get(i).setX(incrementX * tables.get(i).getRadius());
-            this.tables.get(i).setY(incrementY * tables.get(i).getRadius());
+            this.tables.get(i).setX((int)(incrementX * tables.get(i).getRadius()*1.5));
+            this.tables.get(i).setY((int)(incrementY * tables.get(i).getRadius()*1.5));
             incrementX++;
         }
     }
@@ -135,7 +132,6 @@ class FloorPlanSystem extends JPanel {
         public void mouseMoved(MouseEvent mouseEvent) {
             mx = mouseEvent.getX();
             my = mouseEvent.getY();
-            System.out.println(mx + ":" + my);
             Rectangle mouseRect = new Rectangle(mouseEvent.getX(), mouseEvent.getY(), 1, 1);
             for (int i = 0; i < tables.size(); i++) {
                 if (mouseRect.intersects(tables.get(i).getTableRect())) {
