@@ -22,7 +22,7 @@ class FloorPlanSystem extends JPanel {
     private final int MAX_Y = (int) getToolkit().getScreenSize().getHeight();
     private int mx, my;
     private Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
-    Font radiusFont = new Font("Serif", Font.PLAIN, 30);
+    Font diameterFont = new Font("Serif", Font.PLAIN, 30);
 
     public FloorPlanSystem(final ArrayList<Table> t) {
         this.tables = t;
@@ -49,12 +49,12 @@ class FloorPlanSystem extends JPanel {
         int incrementX = 0;
         int incrementY = 0;
         for (int i = 0; i < tables.size(); i++) {
-            if ((int)(incrementX * tables.get(i).getRadius()*1.5) >= MAX_X) {
+            if ((int)(incrementX * tables.get(i).getDiameter()*1.5) >= MAX_X) {
                 incrementX = 0;
                 incrementY++;
             }
-            this.tables.get(i).setX((int)(incrementX * tables.get(i).getRadius()*1.5));
-            this.tables.get(i).setY((int)(incrementY * tables.get(i).getRadius()*1.5));
+            this.tables.get(i).setX((int)(incrementX * tables.get(i).getDiameter()*1.5));
+            this.tables.get(i).setY((int)(incrementY * tables.get(i).getDiameter()*1.5));
             incrementX++;
         }
     }
@@ -65,15 +65,15 @@ class FloorPlanSystem extends JPanel {
         g.setColor(Color.BLACK);
         for (int i = 0; i < tables.size(); i++) {
             if (tables.get(i).getDragged()) {
-                tables.get(i).setX(mx-tables.get(i).getRadius()/2);
-                tables.get(i).setY(my-tables.get(i).getRadius()/2);
+                tables.get(i).setX(mx-tables.get(i).getDiameter()/2);
+                tables.get(i).setY(my-tables.get(i).getDiameter()/2);
             }
             tables.get(i).drawTable(g);
             tables.get(i).drawChair(g);
         }
         g.drawRect(50, 500, 100, 40);
         g.drawRect(50, 600, 100, 40);
-        g.setFont(radiusFont);
+        g.setFont(diameterFont);
         g.drawString("Size +", 60, 528);  
         g.drawString("Size -", 60, 628);
 
@@ -88,13 +88,13 @@ class FloorPlanSystem extends JPanel {
             mouseCounter++;
             if (mx >= 50 && mx <= 150 && my >= 500 && my <= 540){
                 for (int i = 0; i < tables.size(); i++){
-                    tables.get(i).setRadius(tables.get(i).getRadius()+10);
+                    tables.get(i).setDiameter(tables.get(i).getDiameter()+10);
                     setTable();
                 }
             }
             else if (mx >= 50 && mx <= 150 && my >= 600 && my <= 640){
                 for (int i = 0; i < tables.size(); i++){
-                    tables.get(i).setRadius(tables.get(i).getRadius()-10);
+                    tables.get(i).setDiameter(tables.get(i).getDiameter()-10);
                     setTable();
                 }
         }
