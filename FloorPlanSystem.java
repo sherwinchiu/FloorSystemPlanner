@@ -22,6 +22,8 @@ class FloorPlanSystem extends JPanel {
     private final int MAX_X = (int) getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int) getToolkit().getScreenSize().getHeight();
     private int mx, my;
+    private Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
+    Font diameterFont = new Font("Serif", Font.PLAIN, 30);
 
     public FloorPlanSystem(final ArrayList<Table> t) {
         this.tables = t;
@@ -88,8 +90,8 @@ class FloorPlanSystem extends JPanel {
         g.setColor(Color.BLACK);
         for (int i = 0; i < tables.size(); i++) {
             if (tables.get(i).getDragged()) {
-                tables.get(i).setX(mx);
-                tables.get(i).setY(my);
+                tables.get(i).setX(mx-tables.get(i).getDiameter()/2);
+                tables.get(i).setY(my-tables.get(i).getDiameter()/2);
             }
             tables.get(i).drawTable(g);
             tables.get(i).drawChair(g);
@@ -106,7 +108,19 @@ class FloorPlanSystem extends JPanel {
         public void mouseClicked(final MouseEvent mouseEvent) {
             elapsedTime = System.currentTimeMillis() - startTime;
             mouseCounter++;
-            if (elapsedTime > 1000) {
+            if (mx >= 50 && mx <= 150 && my >= 500 && my <= 540){
+                for (int i = 0; i < tables.size(); i++){
+                    tables.get(i).setDiameter(tables.get(i).getDiameter()+10);
+                    setTable();
+                }
+            }
+            else if (mx >= 50 && mx <= 150 && my >= 600 && my <= 640){
+                for (int i = 0; i < tables.size(); i++){
+                    tables.get(i).setDiameter(tables.get(i).getDiameter()-10);
+                    setTable();
+                }
+        }
+            else if (elapsedTime > 1000) {
                 mouseCounter = 0;
                 startTime = System.currentTimeMillis();
             } else if (elapsedTime < 1000 && mouseCounter >= 2) {
@@ -114,7 +128,8 @@ class FloorPlanSystem extends JPanel {
                 startTime = System.currentTimeMillis();
                 mx = mouseEvent.getX();
                 my = mouseEvent.getY();
-                Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
+                mouseRect.x = mx;
+                mouseRect.y = my;
                 for (int i = 0; i < tables.size(); i++) {
                     for (int j = 0; j < tables.get(i).getStudents().size(); j++) {
                         if (mouseRect.intersects(tables.get(i).getNameRect(j))) {
@@ -123,7 +138,7 @@ class FloorPlanSystem extends JPanel {
                     }
                 }
             }
-        }
+    }
         @Override
         public void mouseEntered(final MouseEvent mouseEvent) {
         }
@@ -143,10 +158,10 @@ class FloorPlanSystem extends JPanel {
 
         @Override
         public void mouseDragged(MouseEvent mouseEvent) {
-            //- tables.get(0).getRadius() / 2;
             mx = mouseEvent.getX();
             my = mouseEvent.getY();
-            Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
+            mouseRect.x = mx;
+            mouseRect.y = my;
             for (int i = 0; i < tables.size(); i++) {
                 if (mouseRect.intersects(tables.get(i).getTableRect()) && !somethingDragging) {
                     tables.get(i).setDragged(true);
@@ -159,14 +174,15 @@ class FloorPlanSystem extends JPanel {
         public void mouseMoved(MouseEvent mouseEvent) {
             mx = mouseEvent.getX();
             my = mouseEvent.getY();
-            Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
+            mouseRect.x = mx;
+            mouseRect.y = my;
             for (int i = 0; i < tables.size(); i++) {
                 if (mouseRect.intersects(tables.get(i).getTableRect())) {
                     somethingDragging = false;
                     tables.get(i).setDragged(false);
+                    mouseEvent.consume();   
                 }
             }
-            mouseEvent.consume();
         }
     }
 }
