@@ -10,7 +10,7 @@ class Table{
     private boolean dragged = false;
     private final int MAX_SIZE = 10;
     private int radius = 150;
-    private Rectangle tableRect = new Rectangle(x,y,this.radius*2, this.radius*2);
+    private Rectangle tableRect = new Rectangle(this.x, this.y, this.radius, this.radius);
     
     public Table(int size){
         this.size = size;
@@ -28,6 +28,8 @@ class Table{
     }
     public void setRadius(int r){
     this.radius = r;
+    this.tableRect.width = r;
+    this.tableRect.height = r;
     }
     public boolean getDragged(){
         return this.dragged;
@@ -56,7 +58,7 @@ class Table{
     }
     public void setX(int x){
         this.x = x;
-        tableRect.setBounds(this.x,this.y,this.radius, this.radius);
+        tableRect.setBounds(this.x, this.y, this.radius, this.radius);
     }
     public int getRadius() {
     	return this.radius;
@@ -66,7 +68,7 @@ class Table{
     }
     public void setY(int y){
         this.y = y;
-        tableRect.setBounds(this.x,this.y,this.radius, this.radius);
+        tableRect.setBounds(this.x, this.y, this.radius, this.radius);
     }
     public boolean isFull(){
         if(this.size == this.MAX_SIZE)
@@ -82,6 +84,7 @@ class Table{
     }
     public void drawTable(Graphics g){
         g.drawOval(this.x, this.y, this.radius, this.radius);
+        g.drawRect(this.tableRect.x, this.tableRect.y, this.tableRect.width, this.tableRect.height);
     }
     public void drawChair(Graphics g){
         double angleIncr = (2.0*Math.PI/(double)this.students.size());
