@@ -108,6 +108,10 @@ class FloorPlanSystem extends JPanel {
         public void mouseClicked(final MouseEvent mouseEvent) {
             elapsedTime = System.currentTimeMillis() - startTime;
             mouseCounter++;
+            mx = mouseEvent.getX();
+            my = mouseEvent.getY();
+            mouseRect.x = mx;
+            mouseRect.y = my;
             if (mx >= 50 && mx <= 150 && my >= 500 && my <= 540){
                 for (int i = 0; i < tables.size(); i++){
                     tables.get(i).setDiameter(tables.get(i).getDiameter()+10);
@@ -126,10 +130,6 @@ class FloorPlanSystem extends JPanel {
             } else if (elapsedTime < 1000 && mouseCounter >= 2) {
                 mouseCounter = 0;
                 startTime = System.currentTimeMillis();
-                mx = mouseEvent.getX();
-                my = mouseEvent.getY();
-                mouseRect.x = mx;
-                mouseRect.y = my;
                 for (int i = 0; i < tables.size(); i++) {
                     for (int j = 0; j < tables.get(i).getStudents().size(); j++) {
                         if (mouseRect.intersects(tables.get(i).getNameRect(j))) {
