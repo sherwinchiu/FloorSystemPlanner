@@ -11,7 +11,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-class FloorPlanSystem extends JPanel {
+public class FloorPlanSystem extends JPanel {
+    private static final long serialVersionUID = 1L;
     // Adding panel variables
     private final int MAX_X = (int) getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int) getToolkit().getScreenSize().getHeight();

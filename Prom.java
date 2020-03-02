@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import java.util.ArrayList;
-class Prom extends JFrame{
+public class Prom extends JFrame{
     public static void main(String[] args) {
         Prom start = new Prom();
     }
@@ -12,6 +12,7 @@ class Prom extends JFrame{
     private final int MAX_X = (int)getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int)getToolkit().getScreenSize().getHeight();
     Prom(){
+        TicketingSystem s = new TicketingSystem();
         FloorPlanSystem panel = new FloorPlanSystem(tables);
         this.getContentPane().add(BorderLayout.CENTER, panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
