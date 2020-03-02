@@ -23,7 +23,9 @@ class FloorPlanSystem extends JPanel {
     private final int MAX_Y = (int) getToolkit().getScreenSize().getHeight();
     private int mx, my;
     private Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
-    Font diameterFont = new Font("Serif", Font.PLAIN, 30);
+    private final Font diameterFont = new Font("Serif", Font.PLAIN, 30);
+    private final Font studentFont = new Font("Times New Roman", Font.PLAIN, 14);
+    private final Font sidePanelFont = new Font("Times New Roman", Font.BOLD, 25);
 
     public FloorPlanSystem(final ArrayList<Table> t) {
         this.tables = t;
@@ -57,8 +59,8 @@ class FloorPlanSystem extends JPanel {
                 incrementX = 0;
                 incrementY++;
             }
-            tableSetX = (int)(375+incrementX * tables.get(i).getRadius()*1.5);
-            tableSetY = (int)(100+incrementY * tables.get(i).getRadius()*1.5);
+            tableSetX = (int)(375+incrementX * tables.get(i).getDiameter()*1.5);
+            tableSetY = (int)(100+incrementY * tables.get(i).getDiameter()*1.5);
             this.tables.get(i).setX(tableSetX);
             this.tables.get(i).setY(tableSetY);
             incrementX++;
@@ -75,9 +77,9 @@ class FloorPlanSystem extends JPanel {
         
         for(int i = 0; i < this.sideStudents.size(); i++){
             sideNameY = 20+incrementY*((i)*5);
-            g.setFont(new Font("Times New Roman", Font.BOLD, 25));
+            g.setFont(sidePanelFont);
             g.drawString(sideStudents.get(i).getName(), 2, sideNameY);
-            g.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+            g.setFont(studentFont);
             g.drawString("Student ID: " +sideStudents.get(i).getId(), 15, sideNameY+20);
         }
     }
@@ -98,6 +100,11 @@ class FloorPlanSystem extends JPanel {
         }
         displaySidePanel(g);
         displaySideNames(g);
+        g.drawRect(50, MAX_Y-(MAX_Y/5), 100, 40);
+        g.drawRect(50, MAX_Y-(MAX_Y/5)+100, 100, 40);
+        g.setFont(diameterFont);
+        g.drawString("Size +", 60, MAX_Y-(MAX_Y/5)+30); 
+        g.drawString("Size -", 60, MAX_Y-(MAX_Y/5) + 130); 
         
         // Updates and redraws the panel
         this.repaint();
@@ -108,7 +115,7 @@ class FloorPlanSystem extends JPanel {
         public void mouseClicked(final MouseEvent mouseEvent) {
             elapsedTime = System.currentTimeMillis() - startTime;
             mouseCounter++;
-            if (mx >= 50 && mx <= 150 && my >= 500 && my <= 540){
+            if (mx >= 50 && mx <= 150 && my >= 540  && my <= 540){
                 for (int i = 0; i < tables.size(); i++){
                     tables.get(i).setDiameter(tables.get(i).getDiameter()+10);
                     setTable();
