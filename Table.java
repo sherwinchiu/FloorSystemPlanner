@@ -1,3 +1,9 @@
+/** Table class 
+ *  Sherwin Chiu and Kyro Nassif
+ *  Tables used for Prom Display
+ *  2/13/2020
+ */
+// Imports
 import java.awt.*;
 import java.util.ArrayList;
 
