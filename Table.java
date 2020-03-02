@@ -1,3 +1,9 @@
+/** Table class 
+ *  Sherwin Chiu and Kyro Nassif
+ *  Tables used for Prom Display
+ *  2/13/2020
+ */
+// Imports
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -84,7 +90,6 @@ class Table{
     }
     public void drawTable(Graphics g){
         g.drawOval(this.x, this.y, this.diameter, this.diameter);
-        g.drawRect(this.tableRect.x, this.tableRect.y, this.tableRect.width, this.tableRect.height);
     }
     public void drawChair(Graphics g){
         double angleIncr = (2.0*Math.PI/(double)this.students.size());
