@@ -51,7 +51,7 @@ public class FloorPlanSystem extends JPanel {
     // -----------------------------------------------------------------------------------------------------
     // Setup and Logistical Methods -
     // -----------------------------------------------------------------------------------------------------
-    private void setTable() {
+    public void setTable() {
         int incrementX = 0;
         int incrementY = 0;
         int tableSetX = 375;
