@@ -5,6 +5,7 @@ class Student implements Comparator<Student>{
     private String id;
     private ArrayList<Student> partners = new ArrayList<>(0);
     private boolean paid;
+    private ArrayList<Student> unDesired = new ArrayList<Student>();
     public Student(String name, String id, ArrayList<Student> partners){
         this.name = name;
         this.id = id;
@@ -25,6 +26,12 @@ class Student implements Comparator<Student>{
     }
     public void setPartners(ArrayList<Student> partners){
         this.partners = partners;
+    }
+    public ArrayList<Student> getUndesired(){
+        return this.unDesired;
+    }
+    public void setUndesired(ArrayList<Student> u){
+        this.unDesired = u;
     }
     public boolean hasPaid(){
         return this.paid;
