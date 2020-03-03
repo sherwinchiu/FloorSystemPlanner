@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-
 import java.util.ArrayList;
+
 public class Prom extends JFrame{
     public static void main(String[] args) {
         Prom start = new Prom();
