@@ -406,8 +406,9 @@ public class TicketingSystem extends JPanel implements ActionListener {
             //Clear the panel
             clearPanel();
         } else if (e.getSource() == cancel) {
+            parent.setMenuPanel();
             parent.remove(this);
-            parent.add(parent.getMenu());
+            this.setVisible(false);
             parent.revalidate();
             parent.repaint();
         } else if (e.getSource() == addPartner) {

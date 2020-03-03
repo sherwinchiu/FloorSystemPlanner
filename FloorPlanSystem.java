@@ -37,9 +37,11 @@ public class FloorPlanSystem extends JPanel {
     private final Font diameterFont = new Font("Times New Roman", Font.PLAIN, 30);
     private final Font studentFont = new Font("Times New Roman", Font.PLAIN, 14);
     private final Font sidePanelFont = new Font("Times New Roman", Font.BOLD, 25);
+    private Prom parent;
 
-    public FloorPlanSystem(final ArrayList<Table> t) {
+    public FloorPlanSystem(final ArrayList<Table> t, Prom parent) {
         this.tables = t;
+        this.parent = parent;
         this.addMouseListener(new MyMouseListener());
         this.addMouseMotionListener(new MyMouseListener());
         this.setVisible(false);
@@ -242,7 +244,11 @@ public class FloorPlanSystem extends JPanel {
     // -----------------------------------------------------------------------------------------------------
     private void backButtonPushed() {
         if (mouseRect.intersects(backRect)) {
-            this.setVisible(false);
+            parent.setMenuPanel();
+            parent.remove(this);
+            setVisible(false);
+            parent.revalidate();
+            parent.repaint();
         }
     }
 

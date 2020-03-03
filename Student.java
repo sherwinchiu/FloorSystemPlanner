@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+
+import javax.xml.namespace.QName;
 class Student implements Comparator<Student>{
     private String name;
     private String id;
     private ArrayList<Student> partners = new ArrayList<>(0);
     private boolean paid;
     private ArrayList<Student> unDesired = new ArrayList<Student>();
+    private ArrayList<String> accommodations = new ArrayList<String>();
     public Student(String name, String id, ArrayList<Student> partners){
         this.name = name;
         this.id = id;
@@ -44,6 +47,9 @@ class Student implements Comparator<Student>{
             return true; 
         else   
             return false;
+    }
+    public void setAccommodations(ArrayList<String> accommodations){
+        this.accommodations = accommodations;
     }
     @Override
     public int compare(Student s1, Student s2) {
