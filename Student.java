@@ -1,23 +1,29 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
-import javax.xml.namespace.QName;
 class Student implements Comparator<Student>{
     private String name;
     private String id;
-    private ArrayList<Student> partners = new ArrayList<>(0);
+    private ArrayList<Student> partners;
     private boolean paid;
-    private ArrayList<Student> unDesired = new ArrayList<Student>();
-    private ArrayList<String> accommodations = new ArrayList<String>();
-    public Student(String name, String id, ArrayList<Student> partners){
+    private ArrayList<Student> unDesired;
+    private ArrayList<String> accommodations;
+
+
+    Student(String name, String id, ArrayList<Student> partners){
+        System.out.println("13");
         this.name = name;
         this.id = id;
         this.partners = partners;
     }
-    public Student(String name, String id){
+
+    Student(String name, String id){
         this.name = name;
         this.id = id;
+        System.out.println("asd");
     }
+
     public String getName(){
         return this.name;
     }
@@ -42,11 +48,13 @@ class Student implements Comparator<Student>{
     public void setPaid(boolean paid){
         this.paid = paid;
     }
-    public boolean equals(Student s){
-        if (compare(this, s) == 0)
-            return true; 
-        else   
-            return false;
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(name, student.name) && Objects.equals(id, student.id);
     }
     public void setAccommodations(ArrayList<String> accommodations){
         this.accommodations = accommodations;

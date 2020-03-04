@@ -25,7 +25,6 @@ class MainMenu extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == floorButton){
             parent.setFloorPanel();
-            parent.remove(this);
             this.setVisible(false);
             parent.revalidate();
             parent.repaint();

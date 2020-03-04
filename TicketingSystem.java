@@ -315,17 +315,19 @@ public class TicketingSystem extends JPanel implements ActionListener {
             }
         }
 
-
-
+        System.out.println("1");
 
         //Add user and data to Student object and add student to master list
+        System.out.println(firstNameField.getText());
+        System.out.println(lastNameField.getText());
+        System.out.println(studentNumField.getText());
+        System.out.println(createPartnersList().get(0));
         Student user = new Student(firstNameField.getText() + " " + lastNameField.getText(), studentNumField.getText(), createPartnersList());
+        System.out.println("s");
         user.setPaid(true);
 
         //Convert String[] of accommodations to ArrayList<String>s
         String[] accomm = new String[restrictionsField.getText().split(", ").length];
-
-
 
         if (students.contains(user)) {
             students.get(students.indexOf(user)).setPartners(createPartnersList());
@@ -363,6 +365,7 @@ public class TicketingSystem extends JPanel implements ActionListener {
             Student partner = new Student(partnerFields.get(i).getText(), partnerNums.get(i).getText());
             partners.add(partner);
         }
+        System.out.println("hellloo");
         return partners;
     }
 
@@ -389,13 +392,13 @@ public class TicketingSystem extends JPanel implements ActionListener {
                 invalid.setText("Profile submitted successfully!");
                 invalid.setForeground(Color.GREEN.darker());
                 invalid.setVisible(true);
-                try {
+                try{
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
                 //Clear Panel when successfully submitted for next student
-                clearPanel();
+                // clearPanel();
             } else if (!areFieldsFilled()) {
                 //Not all field filled, present flag
                 System.out.println("All fields are not filled");
@@ -406,8 +409,8 @@ public class TicketingSystem extends JPanel implements ActionListener {
             //Clear the panel
             clearPanel();
         } else if (e.getSource() == cancel) {
-            parent.setMenuPanel();
             parent.remove(this);
+            parent.setMenuPanel();
             this.setVisible(false);
             parent.revalidate();
             parent.repaint();

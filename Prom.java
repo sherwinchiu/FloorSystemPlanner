@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
+
 class Prom extends JFrame {
     public static void main(String[] args) {
         Prom start = new Prom();
@@ -18,8 +18,8 @@ class Prom extends JFrame {
     Prom() {
         this.getContentPane().add(BorderLayout.CENTER, menuPanel);
         this.menuPanel.setVisible(true);
-        this.ticketingPanel.setVisible(true);
-        this.floorPanel.setVisible(true);
+        this.ticketingPanel.setVisible(false);
+        this.floorPanel.setVisible(false);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(MAX_X, MAX_Y);
@@ -37,7 +37,6 @@ class Prom extends JFrame {
         ticketingPanel.setVisible(true);
     }
     public void setMenuPanel(){
-        this.getContentPane().add(BorderLayout.CENTER, menuPanel);
         menuPanel.setVisible(true);
 
     }

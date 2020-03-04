@@ -45,6 +45,7 @@ public class FloorPlanSystem extends JPanel {
         this.addMouseListener(new MyMouseListener());
         this.addMouseMotionListener(new MyMouseListener());
         this.setVisible(false);
+        this.tables.add(new Table(2));
         setTable();
     }
 
@@ -244,8 +245,8 @@ public class FloorPlanSystem extends JPanel {
     // -----------------------------------------------------------------------------------------------------
     private void backButtonPushed() {
         if (mouseRect.intersects(backRect)) {
-            parent.setMenuPanel();
             parent.remove(this);
+            parent.setMenuPanel();
             setVisible(false);
             parent.revalidate();
             parent.repaint();
