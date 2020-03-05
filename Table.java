@@ -32,6 +32,10 @@ class Table{
   public int getSize(){
     return this.size;
   }
+  public void clearTable(){
+    students = new ArrayList<>();
+  }
+  
   public void setDragged(boolean b){
     this.dragged = b;
   }

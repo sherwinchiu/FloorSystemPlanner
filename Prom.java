@@ -14,10 +14,11 @@ class Prom extends JFrame {
   private FloorPlanSystem floorPanel;
   private TicketingSystem ticketingPanel;
   private MainMenu menuPanel;
+  private final int MAX_SIZE = 10;
   
   Prom() {
-    students = new ArrayList<>();
-    tables = new ArrayList<>();
+    students = new ArrayList<Student>();
+    tables = new ArrayList<Table>();
     floorPanel = new FloorPlanSystem(tables, this);
     ticketingPanel = new TicketingSystem(this);
     menuPanel = new MainMenu(this);
@@ -31,8 +32,10 @@ class Prom extends JFrame {
   }
   public void setFloorPanel(){
     this.getContentPane().add(BorderLayout.CENTER, floorPanel);
+    for (int i = 0; i < tables.size(); i++){
+      tables.get(i).clearTable();  //remove all students from the tables instead of clearing students so that students are placed in most optimal tables
+    }
     this.tables = SeatingAssignmentSystem.assignTables(this.students, this.tables);
-    students = new ArrayList<>();
     floorPanel.setTable();
     floorPanel.setVisible(true);
   }
