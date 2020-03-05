@@ -12,7 +12,6 @@ class Student implements Comparator<Student>{
 
 
     Student(String name, String id, ArrayList<Student> partners){
-        System.out.println("13");
         this.name = name;
         this.id = id;
         this.partners = partners;

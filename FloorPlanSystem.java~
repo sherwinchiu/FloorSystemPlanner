@@ -48,7 +48,6 @@ public class FloorPlanSystem extends JPanel {
         this.tables.add(new Table(2));
         setTable();
     }
-
     // -----------------------------------------------------------------------------------------------------
     // Setup and Logistical Methods -
     // -----------------------------------------------------------------------------------------------------
@@ -177,6 +176,7 @@ public class FloorPlanSystem extends JPanel {
      */
     // ----------------------------------------------------------------------------------------------------
     public void paintComponent(final Graphics g) {
+      this.tables = SeatingAssignmentSystem.assignTables(parent.getStudents(), this.tables);
         super.paintComponent(g);
         // Draw Stuff Here
         g.setColor(Color.BLACK);
