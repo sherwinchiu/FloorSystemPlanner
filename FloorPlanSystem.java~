@@ -52,11 +52,13 @@ public class FloorPlanSystem extends JPanel {
     // Setup and Logistical Methods -
     // -----------------------------------------------------------------------------------------------------
     public void setTable() {
+      this.tables = SeatingAssignmentSystem.assignTables(parent.getStudents(), this.tables);
         int incrementX = 0;
         int incrementY = 0;
         int tableSetX = 375;
         int tableSetY = 100;
         for (int i = 0; i < tables.size(); i++) {
+          this.tables.get(i).refreshChairs();
             if (tableSetX + tables.get(0).getDiameter() * 3 >= MAX_X) {
                 incrementX = 0;
                 incrementY++;
@@ -176,7 +178,6 @@ public class FloorPlanSystem extends JPanel {
      */
     // ----------------------------------------------------------------------------------------------------
     public void paintComponent(final Graphics g) {
-      this.tables = SeatingAssignmentSystem.assignTables(parent.getStudents(), this.tables);
         super.paintComponent(g);
         // Draw Stuff Here
         g.setColor(Color.BLACK);
@@ -208,16 +209,18 @@ public class FloorPlanSystem extends JPanel {
                 for (int i = 0; i < tables.size(); i++) {
                     if (tables.get(i) != null) {
                         tables.get(i).setDiameter(tables.get(i).getDiameter() + 10);
-                        setTable();
+                        tables.get(i).refreshChairs();
                     }
                 }
+                setTable();
             } else if (mouseRect.intersects(sizeDownRect) && tables.get(0).getDiameter() > 130) {
                 for (int i = 0; i < tables.size(); i++) {
                     if (tables.get(i) != null) {
                         tables.get(i).setDiameter(tables.get(i).getDiameter() - 10);
-                        setTable();
+                        tables.get(i).refreshChairs();
                     }
                 }
+                setTable();
             }
         }
     }
@@ -288,6 +291,7 @@ public class FloorPlanSystem extends JPanel {
             for (int i = 0; i < tables.size(); i++) {
                 somethingDragging = false;
                 tables.get(i).setDragged(false);
+                tables.get(i).refreshChairs();
             }
         }
 
@@ -302,6 +306,7 @@ public class FloorPlanSystem extends JPanel {
                     tables.get(i).setDragged(true);
                     somethingDragging = true;
                     mouseEvent.consume();
+                    tables.get(i).refreshChairs();
                 }
             }
         }
@@ -317,6 +322,7 @@ public class FloorPlanSystem extends JPanel {
                     somethingDragging = false;
                     tables.get(i).setDragged(false);
                     mouseEvent.consume();
+                    tables.get(i).refreshChairs();
                 }
             }
         }

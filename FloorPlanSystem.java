@@ -46,13 +46,11 @@ public class FloorPlanSystem extends JPanel {
         this.addMouseMotionListener(new MyMouseListener());
         this.setVisible(false);
         this.tables.add(new Table(2));
-        setTable();
     }
     // -----------------------------------------------------------------------------------------------------
     // Setup and Logistical Methods -
     // -----------------------------------------------------------------------------------------------------
     public void setTable() {
-      this.tables = SeatingAssignmentSystem.assignTables(parent.getStudents(), this.tables);
         int incrementX = 0;
         int incrementY = 0;
         int tableSetX = 375;
@@ -212,7 +210,6 @@ public class FloorPlanSystem extends JPanel {
                         tables.get(i).refreshChairs();
                     }
                 }
-                setTable();
             } else if (mouseRect.intersects(sizeDownRect) && tables.get(0).getDiameter() > 130) {
                 for (int i = 0; i < tables.size(); i++) {
                     if (tables.get(i) != null) {
@@ -220,7 +217,6 @@ public class FloorPlanSystem extends JPanel {
                         tables.get(i).refreshChairs();
                     }
                 }
-                setTable();
             }
         }
     }

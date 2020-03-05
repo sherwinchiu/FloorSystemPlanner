@@ -19,7 +19,7 @@ class Prom extends JFrame {
     students = new ArrayList<>();
     tables = new ArrayList<>();
     floorPanel = new FloorPlanSystem(tables, this);
-    ticketingPanel =  = new TicketingSystem(this);
+    ticketingPanel = new TicketingSystem(this);
     menuPanel = new MainMenu(this);
     this.getContentPane().add(BorderLayout.CENTER, menuPanel);
     this.menuPanel.setVisible(true);
@@ -35,6 +35,7 @@ class Prom extends JFrame {
   }
   public void setFloorPanel(){
     this.getContentPane().add(BorderLayout.CENTER, floorPanel);
+    floorPanel.setTable();
     floorPanel.setVisible(true);
   }
   public void setTicketingPanel(){

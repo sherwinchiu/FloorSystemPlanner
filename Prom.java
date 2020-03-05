@@ -21,11 +21,7 @@ class Prom extends JFrame {
     floorPanel = new FloorPlanSystem(tables, this);
     ticketingPanel = new TicketingSystem(this);
     menuPanel = new MainMenu(this);
-    this.getContentPane().add(BorderLayout.CENTER, menuPanel);
-    this.menuPanel.setVisible(true);
-    this.ticketingPanel.setVisible(false);
-    this.floorPanel.setVisible(false);
-    
+    this.getContentPane().add(BorderLayout.CENTER, menuPanel);    
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(MAX_X, MAX_Y);
     this.setVisible(true);
@@ -35,6 +31,8 @@ class Prom extends JFrame {
   }
   public void setFloorPanel(){
     this.getContentPane().add(BorderLayout.CENTER, floorPanel);
+    this.tables = SeatingAssignmentSystem.assignTables(this.students, this.tables);
+    students = new ArrayList<>();
     floorPanel.setTable();
     floorPanel.setVisible(true);
   }
