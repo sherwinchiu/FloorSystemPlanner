@@ -298,7 +298,7 @@ public class FloorPlanSystem extends JPanel {
             mouseRect.x = mx;
             mouseRect.y = my;
             for (int i = 0; i < tables.size(); i++) {
-                if (mouseRect.intersects(tables.get(i).getTableRect()) && !somethingDragging) {
+                if (mouseRect.intersects(tables.get(i).getTableRect()) && !somethingDragging) { // iif they click a table
                     tables.get(i).setDragged(true);
                     somethingDragging = true;
                     mouseEvent.consume();
@@ -314,7 +314,7 @@ public class FloorPlanSystem extends JPanel {
             mouseRect.x = mx;
             mouseRect.y = my;
             for (int i = 0; i < tables.size(); i++) {
-                if (mouseRect.intersects(tables.get(i).getTableRect())) {
+                if (mouseRect.intersects(tables.get(i).getTableRect())) { // if they click a table
                     somethingDragging = false;
                     tables.get(i).setDragged(false);
                     mouseEvent.consume();

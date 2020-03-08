@@ -3,7 +3,11 @@ import java.awt.*;
 import java.util.ArrayList;
 
 class Prom extends JFrame {
-  public static void main(String[] args) {
+  
+  /** 
+   * @param args
+   */
+  public static void main(String[] args) throws Exception{
     Prom start = new Prom();
   }
   
@@ -15,35 +19,41 @@ class Prom extends JFrame {
   private TicketingSystem ticketingPanel;
   private MainMenu menuPanel;
   private final int MAX_SIZE = 10;
+  private final int MAX_TABLES = 20;
   
-  Prom() {
+  Prom() throws Exception{
     students = new ArrayList<Student>();
-    tables = new ArrayList<Table>();
+    tables = new ArrayList<Table>(20);
     floorPanel = new FloorPlanSystem(tables, this);
-    ticketingPanel = new TicketingSystem(this);
+     ticketingPanel = new TicketingSystem(this);
     menuPanel = new MainMenu(this);
     this.getContentPane().add(BorderLayout.CENTER, menuPanel);    
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(MAX_X, MAX_Y);
     this.setVisible(true);
   }
+  
+  /** 
+   * @return ArrayList<Student>
+   */
   public ArrayList<Student> getStudents(){
     return this.students;
   }
   public void setFloorPanel(){
-    this.getContentPane().add(BorderLayout.CENTER, floorPanel);
+    this.getContentPane().add(BorderLayout.CENTER, floorPanel); // makes the floor panel the main part of the screen
     for (int i = 0; i < tables.size(); i++){
       tables.get(i).clearTable();  //remove all students from the tables instead of clearing students so that students are placed in most optimal tables
     }
-    this.tables = SeatingAssignmentSystem.assignTables(this.students, this.tables);
+    this.tables = SeatingAssignmentSystem.assignTables(this.students, this.tables.size(), MAX_SIZE);
     floorPanel.setTable();
     floorPanel.setVisible(true);
   }
   public void setTicketingPanel(){
-    this.getContentPane().add(BorderLayout.CENTER, ticketingPanel);      
+    this.getContentPane().add(BorderLayout.CENTER, ticketingPanel);      // makes ticketingPanel main part of the system
     ticketingPanel.setVisible(true);
   }
   public void setMenuPanel(){
+    this.getContentPane().add(BorderLayout.CENTER, menuPanel); // makes menuPanel main part of the screen
     menuPanel.setVisible(true);
     
   }

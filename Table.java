@@ -3,6 +3,7 @@
   *  Tables used for Prom Display
   *  2/13/2020
   */
+
 // Imports
 import java.awt.*;
 import java.util.ArrayList;
@@ -29,6 +30,10 @@ class Table{
     this.y = y;
     this.size = size;
   }
+  
+  /** 
+   * @return int
+   */
   public int getSize(){
     return this.size;
   }
@@ -36,64 +41,129 @@ class Table{
     students = new ArrayList<>();
   }
   
+  
+  /** 
+   * @param b
+   */
   public void setDragged(boolean b){
     this.dragged = b;
   }
+  
+  /** 
+   * @param r
+   */
   public void setDiameter(int r){
     this.diameter = r;
     this.tableRect.width = r;
     this.tableRect.height = r;
   }
+  
+  /** 
+   * @return boolean
+   */
   public boolean getDragged(){
     return this.dragged;
   }
+  
+  /** 
+   * @param s
+   */
   public void addStudent(Student s){
     this.students.add(s);
   }
+  
+  /** 
+   * @param s
+   */
   public void removeStudent(Student s){
     for(int i = 0; i < this.size; i++){
       if (s.getId() == this.students.get(i).getId())
         this.students.set(i, null);
     }
   } 
+  
+  /** 
+   * @return ArrayList<Student>
+   */
   public ArrayList<Student> getStudents(){
     return this.students;
   }
+  
+  /** 
+   * @param s
+   */
   public void setStudents(ArrayList<Student> s){
     for(int i = 0; i < s.size(); i++){
       this.nameRect.add(new Rectangle());
     }
     this.students = s;
   }
+  
+  /** 
+   * @return int
+   */
   public int getX(){
     return this.x;
   }
+  
+  /** 
+   * @param x
+   */
   public void setX(int x){
     this.x = x;
     tableRect.x = x;
   }
+  
+  /** 
+   * @return int
+   */
   public int getDiameter() {
     return this.diameter;
   }
+  
+  /** 
+   * @return int
+   */
   public int getY(){
     return this.y;
   }
+  
+  /** 
+   * @param y
+   */
   public void setY(int y){
     this.y = y;
     tableRect.y = y;
   }
+  
+  /** 
+   * @return boolean
+   */
   public boolean isFull(){
     if(this.size == this.MAX_SIZE)
       return true;
     else 
       return false;
   }
+  
+  /** 
+   * @return Rectangle
+   */
   public Rectangle getTableRect(){
     return this.tableRect;
   }
+  
+  /** 
+   * @param index
+   * @return Rectangle
+   */
   public Rectangle getNameRect(int index){
     return this.nameRect.get(index);
   }
+  
+  /** 
+   * @param g
+   */
   public void drawTable(Graphics g){
     g.drawOval(this.x, this.y, this.diameter, this.diameter);
   }
@@ -114,6 +184,10 @@ class Table{
       }
     }
   }
+  
+  /** 
+   * @param g
+   */
   public void drawChair(Graphics g){
     this.angleIncr = (2.0*Math.PI/(double)this.students.size());
     if (this.students.size() > 0){
