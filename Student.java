@@ -1,3 +1,8 @@
+/**  Student class 
+ *  Sherwin Chiu and Kyro Nassif
+ *  Visual display of the menu for prom   
+ *  2/13/2020
+ */
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;

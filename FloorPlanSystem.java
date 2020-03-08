@@ -39,7 +39,7 @@ public class FloorPlanSystem extends JPanel {
     private final Font sidePanelFont = new Font("Times New Roman", Font.BOLD, 25);
     private Prom parent;
 
-    public FloorPlanSystem(final ArrayList<Table> t, Prom parent) {
+    public FloorPlanSystem(final ArrayList<Table> t, Prom parent){ //constructor{
         this.tables = t;
         this.parent = parent;
         this.addMouseListener(new MyMouseListener());
@@ -74,7 +74,7 @@ public class FloorPlanSystem extends JPanel {
      * @param sIndex
      */
     // -----------------------------------------------------------------------------------------------------
-    private void addSideNames(int tIndex, int sIndex) {
+    private void addSideNames(int tIndex, int sIndex) { // displays names on side 
         if (sideStudents.size() < MAX_Y / 135) {
             sideStudents.add(this.tables.get(tIndex).getStudents().get(sIndex));
             removeStudentRect.add(new Rectangle(270, 0, 20, 20));
@@ -85,7 +85,7 @@ public class FloorPlanSystem extends JPanel {
      * @param num
      */
     // -----------------------------------------------------------------------------------------------------
-    private void removeSideName(int num) {
+    private void removeSideName(int num) {// removes names on side
         sideStudents.remove(num);
         removeStudentRect.remove(num);
     }
@@ -96,7 +96,7 @@ public class FloorPlanSystem extends JPanel {
     // -----------------------------------------------------------------------------------------------------
     // Drawing Methods -
     // -----------------------------------------------------------------------------------------------------
-    private void drawSidePanel(final Graphics g) {
+    private void drawSidePanel(final Graphics g) {// draws side panel
         g.setColor(new Color(212, 235, 242));
         g.fillRect(0, 0, 300, MAX_Y);
         g.setColor(Color.BLACK);
@@ -106,7 +106,7 @@ public class FloorPlanSystem extends JPanel {
      * @param g
      */
     // ----------------------------------------------------------------------------------------------------
-    private void drawSideNames(final Graphics g) {
+    private void drawSideNames(final Graphics g) { // draws names on side
         int incrementY = 20;
         int sideNameY = 0;
         for (int i = 0; i < this.sideStudents.size(); i++) {
@@ -128,7 +128,7 @@ public class FloorPlanSystem extends JPanel {
      * @param g
      */
     // ----------------------------------------------------------------------------------------------------
-    private void drawTableNum(final Graphics g) {
+    private void drawTableNum(final Graphics g) {//draw table numbers
         g.setFont(sidePanelFont);
         for (int i = 0; i < tables.size(); i++) {
             g.drawString("" + (i + 1), tables.get(i).getX() + tables.get(0).getDiameter() / 2 - 5,
@@ -140,7 +140,7 @@ public class FloorPlanSystem extends JPanel {
      * @param g
      */
     // ----------------------------------------------------------------------------------------------------
-    private void drawInfo(final Graphics g) {
+    private void drawInfo(final Graphics g) { //draw student info
         g.setFont(sidePanelFont);
         g.drawString("Additional Info", 10, MAX_Y - MAX_Y / 6 - 10);
         g.setFont(studentFont);
@@ -153,7 +153,7 @@ public class FloorPlanSystem extends JPanel {
     /**
      * @param g
      */
-    private void drawSizeButtons(final Graphics g) {
+    private void drawSizeButtons(final Graphics g) { //draw buttons for size
         g.drawRect(25, MAX_Y - (MAX_Y / 5) + 100, 100, 40);
         g.drawRect(175, MAX_Y - (MAX_Y / 5) + 100, 100, 40);
         g.setFont(diameterFont);
@@ -165,7 +165,7 @@ public class FloorPlanSystem extends JPanel {
      * @param g
      */
     // ----------------------------------------------------------------------------------------------------
-    private void drawBackButton(final Graphics g) {
+    private void drawBackButton(final Graphics g) { //draw back button
         g.drawRect(0, 0, 100, 40);
         g.setFont(diameterFont);
         g.drawString("Back", 15, 30);
@@ -175,7 +175,7 @@ public class FloorPlanSystem extends JPanel {
      * @param g
      */
     // ----------------------------------------------------------------------------------------------------
-    public void paintComponent(final Graphics g) {
+    public void paintComponent(final Graphics g) { //paints the screen
         super.paintComponent(g);
         // Draw Stuff Here
         g.setColor(Color.BLACK);
@@ -201,7 +201,7 @@ public class FloorPlanSystem extends JPanel {
     // -----------------------------------------------------------------------------------------------------
     // Clicking Methods -
     // -----------------------------------------------------------------------------------------------------
-    private void sizeButtonPushed() {
+    private void sizeButtonPushed() { // if size button is pushed
         if (tables.size() != 0) {
             if (mouseRect.intersects(sizeUpRect) && tables.get(0).getDiameter() < 200) {
                 for (int i = 0; i < tables.size(); i++) {
@@ -222,7 +222,7 @@ public class FloorPlanSystem extends JPanel {
     }
 
     // -----------------------------------------------------------------------------------------------------
-    private void doubleClick() {
+    private void doubleClick() { //checks if they double clicked
         elapsedTime = System.currentTimeMillis() - startTime;
         mouseCounter++;
         if (elapsedTime > 1000) {
@@ -242,7 +242,7 @@ public class FloorPlanSystem extends JPanel {
     }
 
     // -----------------------------------------------------------------------------------------------------
-    private void backButtonPushed() {
+    private void backButtonPushed() { // if back button pushed
         if (mouseRect.intersects(backRect)) {
             parent.remove(this);
             parent.setMenuPanel();
@@ -253,7 +253,7 @@ public class FloorPlanSystem extends JPanel {
     }
 
     // -----------------------------------------------------------------------------------------------------
-    private void clearStudentButtonPushed() {
+    private void clearStudentButtonPushed() { //if clear student button is pushed
         for (int i = 0; i < removeStudentRect.size(); i++) {
             if (mouseRect.intersects(removeStudentRect.get(i))) {
                 removeSideName(i);
@@ -298,7 +298,7 @@ public class FloorPlanSystem extends JPanel {
             mouseRect.x = mx;
             mouseRect.y = my;
             for (int i = 0; i < tables.size(); i++) {
-                if (mouseRect.intersects(tables.get(i).getTableRect()) && !somethingDragging) { // iif they click a table
+                if (mouseRect.intersects(tables.get(i).getTableRect()) && !somethingDragging) { // if they click a table
                     tables.get(i).setDragged(true);
                     somethingDragging = true;
                     mouseEvent.consume();
