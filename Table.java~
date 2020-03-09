@@ -35,7 +35,7 @@ class Table{
    * @return int
    */
   public int getSize(){
-    return this.size;
+    return this.students.size();
   }
   public void clearTable(){
     students = new ArrayList<>();
@@ -140,7 +140,7 @@ class Table{
    * @return boolean
    */
   public boolean isFull(){
-    if(this.size == this.MAX_SIZE)
+    if(this.size >= this.MAX_SIZE)
       return true;
     else 
       return false;
@@ -168,7 +168,8 @@ class Table{
     g.drawOval(this.x, this.y, this.diameter, this.diameter);
   }
   public void refreshChairs(){
-    for (int i = students.size(); i > nameRect.size(); i--){
+    int nameRectSize = nameRect.size();
+    for (int i = students.size(); i > nameRectSize; i--){
       this.nameRect.add(new Rectangle());
     }
     for (int i = 0; i < this.students.size(); i++){

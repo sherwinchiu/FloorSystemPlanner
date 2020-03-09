@@ -10,15 +10,14 @@ import java.util.ArrayList;
 
 class Table{
   private int size;
-  private ArrayList<Student> students = new ArrayList<>();
-  private ArrayList<Rectangle> nameRect = new ArrayList<>();
+  private ArrayList<Student> students = new ArrayList<>(0);
+  private ArrayList<Rectangle> nameRect = new ArrayList<>(0);
   private int x;
   private int y;
   private int chairX;
   private int chairY;
   private double angleIncr = (2.0*Math.PI/(double)this.students.size());
   private boolean dragged = false;
-  private final int MAX_SIZE = 10;
   private int diameter = 150;
   private Rectangle tableRect = new Rectangle(this.x, this.y, this.diameter, this.diameter);
   
@@ -140,7 +139,7 @@ class Table{
    * @return boolean
    */
   public boolean isFull(){
-    if(this.size == this.MAX_SIZE)
+    if(this.students.size() >= this.size)
       return true;
     else 
       return false;
@@ -168,9 +167,9 @@ class Table{
     g.drawOval(this.x, this.y, this.diameter, this.diameter);
   }
   public void refreshChairs(){
-    for (int i = students.size(); i > nameRect.size(); i--){
+    int nameRectSize = nameRect.size();
+    for (int i = students.size(); i > nameRectSize; i--){
       this.nameRect.add(new Rectangle());
-      i++;
     }
     for (int i = 0; i < this.students.size(); i++){
       this.chairX = (int)(Math.cos((double)i*angleIncr)*(this.diameter/2+this.diameter/10));

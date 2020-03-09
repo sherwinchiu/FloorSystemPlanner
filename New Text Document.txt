@@ -1,0 +1,309 @@
+import java.util.concurrent.TimeUnit;
+import java.awt.event.ActionEvent;
+import java.awt.Component;
+import java.awt.Dimension;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.BoxLayout;
+import java.awt.Container;
+import java.awt.Color;
+import java.awt.LayoutManager;
+import java.awt.BorderLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.GroupLayout;
+import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import javax.swing.JPanel;
+
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
+public class TicketingSystem extends JPanel implements ActionListener
+{
+    private Prom parent;
+    private final int MAX_PARTNERS = 7;
+    private final String imagePath = "Richmond_Hill_HS_COA.jpg";
+    private ArrayList<Student> students;
+    private JPanel column;
+    private JPanel fields;
+    private JPanel buttonRow;
+    private JPanel partnerBtnRow;
+    private GroupLayout layout;
+    GroupLayout.SequentialGroup hGroup;
+    GroupLayout.SequentialGroup vGroup;
+    GroupLayout.ParallelGroup pGroupLabel;
+    GroupLayout.ParallelGroup pGroupField;
+    private JButton submit;
+    private JButton clear;
+    private JButton cancel;
+    private JButton addPartner;
+    private JButton removePartner;
+    private JTextField firstNameField;
+    private JTextField lastNameField;
+    private JTextField restrictionsField;
+    private JTextField studentNumField;
+    private ArrayList<JTextField> partnerFields;
+    private ArrayList<JTextField> partnerNums;
+    private JLabel firstNameLabel;
+    private JLabel lastNameLabel;
+    private JLabel restrictions;
+    private JLabel studentNumLabel;
+    private JLabel invalid;
+    private ArrayList<JLabel> partnerLabels;
+    private ArrayList<JLabel> partnerNumLabels;
+    
+    TicketingSystem(final Prom parent) {
+        this.parent = parent;
+        this.students = (ArrayList<Student>)parent.getStudents();
+        final ImageIcon icon = new ImageIcon("Richmond_Hill_HS_COA.jpg");
+        icon.getImage().flush();
+        final JLabel background = new JLabel();
+        background.setIcon(icon);
+        background.setLayout(new BorderLayout());
+        (this.invalid = new JLabel()).setForeground(Color.red);
+        this.invalid.setVisible(false);
+        this.invalid.setHorizontalAlignment(2);
+        this.invalid.setAlignmentX(0.5f);
+        this.fields = new JPanel();
+        this.layout = new GroupLayout(this.fields);
+        this.fields.setLayout(this.layout);
+        this.buttonRow = new JPanel();
+        this.partnerBtnRow = new JPanel();
+        (this.column = new JPanel()).setLayout(new BoxLayout(this.column, 1));
+        this.column.setBorder(new TitledBorder(new LineBorder(Color.BLACK, 5), "Sign Up Form"));
+        this.layout.setAutoCreateGaps(true);
+        this.layout.setAutoCreateContainerGaps(true);
+        this.firstNameLabel = new JLabel("First Name:");
+        (this.firstNameField = new JTextField()).setPreferredSize(new Dimension(300, 25));
+        this.lastNameLabel = new JLabel("Last Name:");
+        (this.lastNameField = new JTextField()).setPreferredSize(new Dimension(300, 25));
+        this.restrictions = new JLabel("Accommodations:");
+        (this.restrictionsField = new JTextField()).setPreferredSize(new Dimension(300, 25));
+        this.studentNumLabel = new JLabel("Student Num:");
+        (this.studentNumField = new JTextField()).setPreferredSize(new Dimension(300, 25));
+        this.partnerFields = new ArrayList<JTextField>();
+        this.partnerLabels = new ArrayList<JLabel>();
+        this.partnerNums = new ArrayList<JTextField>();
+        this.partnerNumLabels = new ArrayList<JLabel>();
+        this.partnerFields.add(new JTextField());
+        this.partnerFields.get(0).setPreferredSize(new Dimension(300, 25));
+        this.partnerLabels.add(new JLabel("Partner 1 Name:"));
+        this.partnerNums.add(new JTextField());
+        this.partnerNums.get(0).setPreferredSize(new Dimension(300, 25));
+        this.partnerNumLabels.add(new JLabel("Partner 1 Num:"));
+        (this.addPartner = new JButton("Add Partner")).addActionListener(this);
+        this.partnerBtnRow.add(this.addPartner);
+        (this.removePartner = new JButton("Remove Partner")).addActionListener(this);
+        this.partnerBtnRow.add(this.removePartner);
+        (this.submit = new JButton("Submit")).addActionListener(this);
+        this.buttonRow.add(this.submit);
+        (this.clear = new JButton("Clear All")).addActionListener(this);
+        this.buttonRow.add(this.clear);
+        (this.cancel = new JButton("Exit")).addActionListener(this);
+        this.buttonRow.add(this.cancel);
+        this.pGroupLabel = this.layout.createParallelGroup();
+        this.pGroupField = this.layout.createParallelGroup();
+        (this.hGroup = this.layout.createSequentialGroup()).addGroup(this.pGroupLabel.addComponent(this.firstNameLabel).addComponent(this.lastNameLabel).addComponent(this.studentNumLabel).addComponent(this.restrictions).addComponent(this.partnerLabels.get(0)).addComponent(this.partnerNumLabels.get(0)));
+        this.hGroup.addGroup(this.pGroupField.addComponent(this.firstNameField).addComponent(this.lastNameField).addComponent(this.studentNumField).addComponent(this.restrictionsField).addComponent(this.partnerFields.get(0)).addComponent(this.partnerNums.get(0)));
+        this.layout.setHorizontalGroup(this.hGroup);
+        (this.vGroup = this.layout.createSequentialGroup()).addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.firstNameLabel).addComponent(this.firstNameField));
+        this.vGroup.addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.lastNameLabel).addComponent(this.lastNameField));
+        this.vGroup.addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.studentNumLabel).addComponent(this.studentNumField));
+        this.vGroup.addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.restrictions).addComponent(this.restrictionsField));
+        this.vGroup.addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.partnerLabels.get(0)).addComponent(this.partnerFields.get(0)));
+        this.vGroup.addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.partnerNumLabels.get(0)).addComponent(this.partnerNums.get(0)));
+        this.layout.setVerticalGroup(this.vGroup);
+        this.column.add(this.fields);
+        this.column.add(this.partnerBtnRow);
+        this.column.add(this.buttonRow);
+        this.column.add(this.invalid);
+        this.add(background);
+        this.add(this.column);
+    }
+    
+    private void clearPanel() {
+        this.firstNameField.setText("");
+        this.lastNameField.setText("");
+        this.studentNumField.setText("");
+        this.restrictionsField.setText("");
+        for (int i = 0; i < this.partnerFields.size(); ++i) {
+            this.partnerFields.get(i).setText("");
+            this.partnerNums.get(i).setText("");
+        }
+    }
+    
+    private void partnerAdded() {
+        final JTextField partner = new JTextField();
+        partner.setPreferredSize(new Dimension(300, 25));
+        this.partnerFields.add(partner);
+        final JTextField num = new JTextField();
+        num.setPreferredSize(new Dimension(300, 25));
+        this.partnerNums.add(num);
+        final JLabel label = new JLabel("Partner " + (this.partnerLabels.size() + 1) + " Name: ");
+        this.partnerLabels.add(label);
+        final JLabel labelNum = new JLabel("Partner " + (this.partnerNumLabels.size() + 1) + " Num: ");
+        this.partnerNumLabels.add(labelNum);
+        this.pGroupLabel.addComponent(label);
+        this.pGroupField.addComponent(partner);
+        this.pGroupLabel.addComponent(labelNum);
+        this.pGroupField.addComponent(num);
+        this.vGroup.addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.partnerLabels.get(this.partnerLabels.size() - 1)).addComponent(this.partnerFields.get(this.partnerFields.size() - 1)));
+        this.vGroup.addGroup(this.layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.partnerNumLabels.get(this.partnerNumLabels.size() - 1)).addComponent(this.partnerNums.get(this.partnerNums.size() - 1)));
+        this.column.revalidate();
+        this.column.repaint();
+    }
+    
+    private void partnerRemoved() {
+        this.partnerFields.get(this.partnerFields.size() - 1).setVisible(false);
+        this.partnerNums.get(this.partnerNums.size() - 1).setVisible(false);
+        this.partnerLabels.get(this.partnerLabels.size() - 1).setVisible(false);
+        this.partnerNumLabels.get(this.partnerNumLabels.size() - 1).setVisible(false);
+        this.partnerLabels.remove(this.partnerLabels.size() - 1);
+        this.partnerFields.remove(this.partnerFields.size() - 1);
+        this.partnerNums.remove(this.partnerNums.size() - 1);
+        this.partnerNumLabels.remove(this.partnerNumLabels.size() - 1);
+        this.column.revalidate();
+        this.column.repaint();
+    }
+    
+    private boolean areFieldsFilled() {
+        if (this.firstNameField.getText().equals("")) {
+            return false;
+        }
+        if (this.lastNameField.getText().equals("")) {
+            return false;
+        }
+        if (this.studentNumField.getText().equals("")) {
+            return false;
+        }
+        for (int i = 0; i < this.partnerFields.size(); ++i) {
+            if (this.partnerFields.get(i).getText().equals("")) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean isParseable(final JTextField number) {
+        try {
+            Integer.parseInt(number.getText().trim());
+            return true;
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+    private boolean isSubmitted() {
+        if (!this.isParseable(this.studentNumField)) {
+            this.invalid.setText("Student Number not appropriate. Please input properly.");
+            this.invalid.setVisible(true);
+            return false;
+        }
+        for (int i = 0; i < this.partnerNums.size(); ++i) {
+            if (!this.isParseable(this.partnerNums.get(i))) {
+                this.invalid.setForeground(Color.red);
+                this.invalid.setText("A Partner Number " + (i + 1) + " is invalid.");
+                this.invalid.setVisible(true);
+                return false;
+            }
+            this.invalid.setVisible(false);
+        }
+        final Student user = new Student(this.firstNameField.getText() + " " + this.lastNameField.getText(), this.studentNumField.getText(), (ArrayList)this.createPartnersList());
+        user.setPaid(true);
+        final String[] accomm = this.restrictionsField.getText().split(", ");
+        if (this.students.contains(user)) {
+            this.students.get(this.students.indexOf(user)).setPartners((ArrayList)this.createPartnersList());
+            if (accomm.equals("")) {
+                final ArrayList<String> rest = new ArrayList<String>();
+                for (final String c : accomm) {
+                    rest.add(c);
+                }
+                this.students.get(this.students.indexOf(user)).setAccommodations((ArrayList)rest);
+            }
+            this.students.get(this.students.indexOf(user)).setPaid(true);
+        }
+        else {
+            this.students.add(user);
+        }
+        for (int j = 0; j < this.partnerFields.size(); ++j) {
+            final Student partner = new Student(this.partnerFields.get(j).getText(), this.partnerNums.get(j).getText());
+            if (!this.students.contains(partner)) {
+                this.students.add(partner);
+            }
+        }
+        return true;
+    }
+    
+    ArrayList<Student> createPartnersList() {
+        final ArrayList<Student> partners = new ArrayList<Student>();
+        for (int i = 0; i < this.partnerFields.size(); ++i) {
+            final Student partner = new Student(this.partnerFields.get(i).getText(), this.partnerNums.get(i).getText());
+            partners.add(partner);
+        }
+        System.out.println("hellloo");
+        return partners;
+    }
+    
+    private void addStudent() {
+    }
+    
+    private void removeStudent() {
+    }
+    
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        if (e.getSource() == this.submit) {
+            if (this.areFieldsFilled() && this.isSubmitted()) {
+                this.invalid.setText("Profile submitted successfully!");
+                this.invalid.setForeground(Color.GREEN.darker());
+                this.invalid.setVisible(true);
+                try {
+                    TimeUnit.SECONDS.sleep(1L);
+                }
+                catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            else if (!this.areFieldsFilled()) {
+                System.out.println("All fields are not filled");
+                this.invalid.setText("Error: One or more fields are not filled");
+                this.invalid.setVisible(true);
+            }
+        }
+        else if (e.getSource() == this.clear) {
+            this.clearPanel();
+        }
+        else if (e.getSource() == this.cancel) {
+            this.parent.remove((Component)this);
+            this.parent.setMenuPanel();
+            this.setVisible(false);
+            this.parent.revalidate();
+            this.parent.repaint();
+        }
+        else if (e.getSource() == this.addPartner) {
+            if (this.partnerFields.size() < 7) {
+                this.partnerAdded();
+            }
+            else {
+                this.invalid.setText("Unable to add more partners");
+                this.invalid.setVisible(true);
+            }
+        }
+        else if (e.getSource() == this.removePartner) {
+            if (this.partnerFields.size() > 1) {
+                this.partnerRemoved();
+            }
+            else {
+                this.invalid.setText("You need at least one partner!");
+                this.invalid.setVisible(true);
+            }
+        }
+    }
+}

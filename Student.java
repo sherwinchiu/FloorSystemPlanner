@@ -26,7 +26,6 @@ class Student implements Comparator<Student>{
   public Student(String name, String id){ // constructor
     this.name = name;
     this.id = id;
-    System.out.println("asd");
   }
   
   

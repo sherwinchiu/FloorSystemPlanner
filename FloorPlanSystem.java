@@ -26,7 +26,7 @@ public class FloorPlanSystem extends JPanel {
     private boolean somethingDragging = false;
     // Adding variables used for displaying
     private ArrayList<Student> sideStudents = new ArrayList<Student>(0);
-    private ArrayList<Table> tables = new ArrayList<Table>(0);
+    private ArrayList<Table> tables;
     // Adding rectangles for button interaction
     private Rectangle mouseRect = new Rectangle(mx, my, 1, 1);
     private Rectangle sizeUpRect = new Rectangle(25, MAX_Y - (MAX_Y / 5) + 100, 100, 40);
@@ -45,7 +45,6 @@ public class FloorPlanSystem extends JPanel {
         this.addMouseListener(new MyMouseListener());
         this.addMouseMotionListener(new MyMouseListener());
         this.setVisible(false);
-        this.tables.add(new Table(2));
     }
     // -----------------------------------------------------------------------------------------------------
     // Setup and Logistical Methods -

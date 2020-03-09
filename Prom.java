@@ -18,14 +18,17 @@ class Prom extends JFrame {
   private FloorPlanSystem floorPanel;
   private TicketingSystem ticketingPanel;
   private MainMenu menuPanel;
-  private final int MAX_SIZE = 10;
   private final int MAX_TABLES = 20;
+  private final int MAX_SIZE = 10;
   
   Prom() throws Exception{
-    students = new ArrayList<Student>();
-    tables = new ArrayList<Table>(20);
+    students = new ArrayList<Student>(0);
+    tables = new ArrayList<Table>(0);
+    for (int i = 0; i < MAX_TABLES; i++){
+      tables.add(new Table(MAX_SIZE));
+    }
     floorPanel = new FloorPlanSystem(tables, this);
-     ticketingPanel = new TicketingSystem(this);
+    ticketingPanel = new TicketingSystem(this);
     menuPanel = new MainMenu(this);
     this.getContentPane().add(BorderLayout.CENTER, menuPanel);    
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +47,7 @@ class Prom extends JFrame {
     for (int i = 0; i < tables.size(); i++){
       tables.get(i).clearTable();  //remove all students from the tables instead of clearing students so that students are placed in most optimal tables
     }
-    this.tables = SeatingAssignmentSystem.assignTables(this.students, this.tables.size(), MAX_SIZE);
+    this.tables = SeatingAssignmentSystem.assignTables(this.students, this.tables, 1);
     floorPanel.setTable();
     floorPanel.setVisible(true);
   }
