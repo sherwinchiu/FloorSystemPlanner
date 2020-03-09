@@ -1,9 +1,8 @@
-
 /**  FloorPlanSystem class 
- *  Sherwin Chiu and Kyro Nassif
- *  Visual display of floor for Prom   
- *  2/13/2020
- */
+  *  Sherwin Chiu and Kyro Nassif
+  *  Visual display of floor for Prom   
+  *  2/13/2020
+  */
 // Imports
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +16,7 @@ public class FloorPlanSystem extends JPanel {
     // Adding panel variables
     private final int MAX_X = (int) getToolkit().getScreenSize().getWidth();
     private final int MAX_Y = (int) getToolkit().getScreenSize().getHeight();
-
+    
     // Adding Mouse Variables
     private int mx, my;
     private int mouseCounter = 0;
@@ -38,7 +37,7 @@ public class FloorPlanSystem extends JPanel {
     private final Font studentFont = new Font("Times New Roman", Font.PLAIN, 14);
     private final Font sidePanelFont = new Font("Times New Roman", Font.BOLD, 25);
     private Prom parent;
-
+    
     public FloorPlanSystem(final ArrayList<Table> t, Prom parent){ //constructor{
         this.tables = t;
         this.parent = parent;
@@ -55,7 +54,7 @@ public class FloorPlanSystem extends JPanel {
         int tableSetX = 375;
         int tableSetY = 100;
         for (int i = 0; i < tables.size(); i++) {
-          this.tables.get(i).refreshChairs();
+            this.tables.get(i).refreshChairs();
             if (tableSetX + tables.get(0).getDiameter() * 3 >= MAX_X) {
                 incrementX = 0;
                 incrementY++;
@@ -67,19 +66,23 @@ public class FloorPlanSystem extends JPanel {
             incrementX++;
         }
     }
-
     /**
      * @param tIndex
      * @param sIndex
      */
     // -----------------------------------------------------------------------------------------------------
     private void addSideNames(int tIndex, int sIndex) { // displays names on side 
-        if (sideStudents.size() < MAX_Y / 135) {
+        for(int i = 0; i < sideStudents.size(); i++){
+            if (sideStudents.get(i).getName().equals(this.tables.get(tIndex).getStudents().get(sIndex).getName())){
+                sideStudents.remove(i);
+                removeStudentRect.remove(i);
+            }
+        }
+        if (sideStudents.size() < MAX_Y / 135 ){
             sideStudents.add(this.tables.get(tIndex).getStudents().get(sIndex));
             removeStudentRect.add(new Rectangle(270, 0, 20, 20));
         }
     }
-
     /**
      * @param num
      */
@@ -88,7 +91,6 @@ public class FloorPlanSystem extends JPanel {
         sideStudents.remove(num);
         removeStudentRect.remove(num);
     }
-
     /**
      * @param g
      */
@@ -100,7 +102,7 @@ public class FloorPlanSystem extends JPanel {
         g.fillRect(0, 0, 300, MAX_Y);
         g.setColor(Color.BLACK);
     }
-
+    
     /**
      * @param g
      */
@@ -122,7 +124,6 @@ public class FloorPlanSystem extends JPanel {
             g.drawString("Student ID: " + sideStudents.get(i).getId(), 15, sideNameY + 20);
         }
     }
-
     /**
      * @param g
      */
@@ -131,10 +132,9 @@ public class FloorPlanSystem extends JPanel {
         g.setFont(sidePanelFont);
         for (int i = 0; i < tables.size(); i++) {
             g.drawString("" + (i + 1), tables.get(i).getX() + tables.get(0).getDiameter() / 2 - 5,
-                    tables.get(i).getY() + tables.get(0).getDiameter() / 2 + 5);
+                         tables.get(i).getY() + tables.get(0).getDiameter() / 2 + 5);
         }
     }
-
     /**
      * @param g
      */
@@ -148,7 +148,6 @@ public class FloorPlanSystem extends JPanel {
         g.drawString("Press size buttons to change size.", 10, MAX_Y - MAX_Y / 6 + 35);
         g.drawString("Press the back button to go back to main menu.", 10, MAX_Y - MAX_Y / 6 + 50);
     }
-
     /**
      * @param g
      */
@@ -159,7 +158,6 @@ public class FloorPlanSystem extends JPanel {
         g.drawString("Size +", 30, MAX_Y - (MAX_Y / 5) + 132);
         g.drawString("Size -", 180, MAX_Y - (MAX_Y / 5) + 132);
     }
-
     /**
      * @param g
      */
@@ -169,7 +167,7 @@ public class FloorPlanSystem extends JPanel {
         g.setFont(diameterFont);
         g.drawString("Back", 15, 30);
     }
-
+    
     /**
      * @param g
      */
@@ -196,7 +194,6 @@ public class FloorPlanSystem extends JPanel {
         // Updates and redraws the panel
         this.repaint();
     }
-
     // -----------------------------------------------------------------------------------------------------
     // Clicking Methods -
     // -----------------------------------------------------------------------------------------------------
@@ -219,7 +216,6 @@ public class FloorPlanSystem extends JPanel {
             }
         }
     }
-
     // -----------------------------------------------------------------------------------------------------
     private void doubleClick() { //checks if they double clicked
         elapsedTime = System.currentTimeMillis() - startTime;
@@ -239,7 +235,6 @@ public class FloorPlanSystem extends JPanel {
             }
         }
     }
-
     // -----------------------------------------------------------------------------------------------------
     private void backButtonPushed() { // if back button pushed
         if (mouseRect.intersects(backRect)) {
@@ -250,7 +245,6 @@ public class FloorPlanSystem extends JPanel {
             parent.repaint();
         }
     }
-
     // -----------------------------------------------------------------------------------------------------
     private void clearStudentButtonPushed() { //if clear student button is pushed
         for (int i = 0; i < removeStudentRect.size(); i++) {
@@ -259,7 +253,6 @@ public class FloorPlanSystem extends JPanel {
             }
         }
     }
-
     // -----------------------------------------------------------------------------------------------------
     private class MyMouseListener implements MouseListener, MouseMotionListener {
         @Override
@@ -269,18 +262,14 @@ public class FloorPlanSystem extends JPanel {
             backButtonPushed(); // Check if back button has been pushed
             clearStudentButtonPushed(); // Check if clear students button has been pushed
         }
-
         @Override
         public void mouseEntered(final MouseEvent mouseEvent) {
         }
-
         public void mouseExited(final MouseEvent mouseEvent) {
         }
-
         @Override
         public void mousePressed(final MouseEvent mouseEvent) {
         }
-
         @Override
         public void mouseReleased(final MouseEvent mouseEvent) {
             for (int i = 0; i < tables.size(); i++) {
@@ -289,7 +278,6 @@ public class FloorPlanSystem extends JPanel {
                 tables.get(i).refreshChairs();
             }
         }
-
         @Override
         public void mouseDragged(MouseEvent mouseEvent) {
             mx = mouseEvent.getX();
@@ -305,7 +293,6 @@ public class FloorPlanSystem extends JPanel {
                 }
             }
         }
-
         @Override
         public void mouseMoved(MouseEvent mouseEvent) {
             mx = mouseEvent.getX();

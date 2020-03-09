@@ -1,8 +1,8 @@
 /**  MainMenu class 
- *  Sherwin Chiu and Kyro Nassif
- *  Visual display of the menu for prom   
- *  2/13/2020
- */
+  *  Sherwin Chiu and Kyro Nassif
+  *  Visual display of the menu for prom   
+  *  2/13/2020
+  */
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +19,8 @@ class MainMenu extends JPanel implements ActionListener{
     private final int MAX_Y = (int) getToolkit().getScreenSize().getHeight();
     private Prom parent;
     private  final BufferedImage menuImage;
-
-
+    
+    
     // constructor
     public MainMenu(Prom parent) throws Exception{
         menuImage = ImageIO.read(new File("menuScreen.jpg"));
@@ -46,13 +46,13 @@ class MainMenu extends JPanel implements ActionListener{
             parent.remove(this);
             parent.setFloorPanel();
             this.setVisible(false);
-
+            
         }
         if (e.getSource() == ticketButton) { // if they click ticket button
             setVisible(false);
             parent.remove(this);
             parent.setTicketingPanel();
         }
-
+        
     }
 }
